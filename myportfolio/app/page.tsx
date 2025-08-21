@@ -1,7 +1,7 @@
 "use client"
 
 import { Github, Linkedin, Music, Twitter } from "lucide-react"
-import { Button } from "@/components/ui/button"
+
 import Link from "next/link"
 import { useState, useEffect, useMemo } from "react"
 import NodeGraph from "@/components/node-graph"
@@ -11,7 +11,7 @@ import { experiences, randomItems } from "@/lib/content-data"
 
 export default function Portfolio() {
   const [showNodeGraph, setShowNodeGraph] = useState(true)
-  const { showMiniGraph, setCurrentNode, navigateToSection } = useNavigation()
+  const { showMiniGraph, setCurrentNode } = useNavigation()
     const [displayedText, setDisplayedText] = useState("")
   const [displayedParagraph, setDisplayedParagraph] = useState("")
   const fullText = "Jeffrey Xie"

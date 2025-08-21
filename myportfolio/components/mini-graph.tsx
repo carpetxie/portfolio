@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useNavigation } from "@/contexts/navigation-context"
-import { blogPosts, photoItems, experiences, randomItems } from "@/lib/content-data"
+import { blogPosts, photoItems } from "@/lib/content-data"
 import { useState, useEffect } from "react"
 import PathAnimation from "./path-animation"
 
@@ -149,7 +149,7 @@ export default function MiniGraph() {
         className="fixed top-20 left-6 z-40 w-32 h-28 bg-transparent border-none shadow-none"
       >
         <svg width="100%" height="100%" viewBox="0 0 120 80" className="opacity-100">
-          {connections.map((connection, index) => (
+          {connections.map((connection) => (
             <line
               key={`connection-${connection.from}-${connection.to}`}
               x1={connection.fromNode.x}

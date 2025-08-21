@@ -12,7 +12,7 @@ export default function PhotographyPage() {
   useEffect(() => {
     setCurrentNode("photography")
     showMiniGraph()
-  }, []) // Empty dependency array - only run once on mount
+  }, [setCurrentNode, showMiniGraph])
 
   return (
     <div className="min-h-screen bg-background text-foreground">

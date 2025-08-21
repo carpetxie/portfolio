@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { blogPosts, photoItems, experiences, randomItems } from "@/lib/content-data"
 
@@ -130,11 +130,7 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
 
   const connections = generateConnections()
 
-  const getNodeColor = (node: Node) => {
-    if (node.type === "main") return "#a78bfa" // Purple for main node
-    if (node.type === "category") return "#c4b5fd" // Light purple for categories
-    return "#e0def4" // Lighter purple for content
-  }
+
 
   const getNodeSize = (node: Node) => {
     if (node.type === "main") return 20
