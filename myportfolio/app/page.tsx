@@ -26,9 +26,6 @@ export default function Portfolio() {
   
   useEffect(() => {
     let headingIndex = 0
-    let currentPhraseIndex = 0
-    let phraseIndex = 0
-    let isDeleting = false
 
     const headingInterval = setInterval(() => {
       if (headingIndex <= fullText.length) {
@@ -41,6 +38,17 @@ export default function Portfolio() {
       }
     }, 200) // Slower typing for heading
 
+    return () => {
+      clearInterval(headingInterval)
+    }
+  }, [])
+
+  // Separate useEffect for phrase cycling
+  useEffect(() => {
+    let currentPhraseIndex = 0
+    let phraseIndex = 0
+    let isDeleting = false
+
     const phraseInterval = setInterval(() => {
       const currentPhrase = phrases[currentPhraseIndex]
       
@@ -50,40 +58,38 @@ export default function Portfolio() {
           setDisplayedParagraph(currentPhrase.slice(0, phraseIndex))
           phraseIndex++
         } else {
-          // Wait a bit before deleting
+          // Wait 2 seconds before deleting
+          isDeleting = true
           setTimeout(() => {
-            isDeleting = true
-          }, 2000)
-        }
-      } else {
-        // Deleting the phrase
-        if (phraseIndex > 0) {
-          phraseIndex--
-          setDisplayedParagraph(currentPhrase.slice(0, phraseIndex))
-        } else {
-          // Move to next phrase
-          isDeleting = false
-          phraseIndex = 0 // Reset phrase index for next phrase
-          if (currentPhraseIndex < phrases.length - 1) {
-            currentPhraseIndex++
-            console.log('Moving to phrase:', currentPhraseIndex, 'which is:', phrases[currentPhraseIndex])
-          } else {
-            console.log('Reached last phrase, stopping')
-            // Stop at the last phrase - don't cycle back, but keep it visible
-            // Don't clear the interval, just keep the last phrase
-          }
+            // Start deleting after 2 seconds
+            const deleteInterval = setInterval(() => {
+              if (phraseIndex > 0) {
+                phraseIndex--
+                setDisplayedParagraph(currentPhrase.slice(0, phraseIndex))
+              } else {
+                // Finished deleting, move to next phrase
+                clearInterval(deleteInterval)
+                isDeleting = false
+                phraseIndex = 0
+                
+                if (currentPhraseIndex < phrases.length - 1) {
+                  currentPhraseIndex++
+                  console.log('Moving to phrase:', currentPhraseIndex, 'which is:', phrases[currentPhraseIndex])
+                } else {
+                  console.log('Reached last phrase, stopping')
+                  clearInterval(phraseInterval)
+                }
+              }
+            }, 50) // Fast deletion
+          }, 2000) // Wait 2 seconds before starting to delete
         }
       }
-      
-      // Debug: log what's actually being displayed
-      console.log('Displayed text:', displayedParagraph, 'Current phrase:', currentPhrase, 'Phrase index:', phraseIndex, 'Is deleting:', isDeleting)
-    }, 100) // Slower speed for phrase typing/deleting
+    }, 100) // Slower speed for phrase typing
 
     return () => {
-      clearInterval(headingInterval)
       clearInterval(phraseInterval)
     }
-  }, [])
+  }, [phrases])
 
   const handleMainNodeClick = () => {
     setShowNodeGraph(false)
