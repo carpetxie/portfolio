@@ -18,9 +18,9 @@ export default function Portfolio() {
   
   const phrases = useMemo(() => [
     "I study mathematics.",
-    "I study computer science.",
     "I am a researcher.",
-    "I build software.",
+    "I am gay",
+    "I hope you didn't catch that...",
     "I explore machine learning."
   ], [])
   
