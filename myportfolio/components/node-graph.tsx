@@ -151,7 +151,7 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
 
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/95 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -163,7 +163,7 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
           width="800"
           height="600"
           viewBox="0 0 800 600"
-          className="border border-border/20 rounded-lg bg-white"
+          className="border border-border/20 rounded-lg bg-white/30"
         >
           <defs>
             <filter id="mainNodeGlow">

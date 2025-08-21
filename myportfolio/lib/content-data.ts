@@ -28,74 +28,12 @@ export interface RandomItem {
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: "The Evolution of Minimalist Design in Digital Spaces",
-    excerpt: "Exploring how minimalism has shaped modern digital interfaces and why less truly can be more when it comes to user experience design...",
-    date: "March 2024",
+    title: "Placeholder",
+    excerpt: "",
+    date: "August 2025",
     slug: "evolution-of-minimalist-design"
   },
-  {
-    id: 2,
-    title: "Building Sustainable Design Systems",
-    excerpt: "A deep dive into creating design systems that stand the test of time while remaining flexible enough to evolve with your product...",
-    date: "March 2024",
-    slug: "building-sustainable-design-systems"
-  },
-  {
-    id: 3,
-    title: "Photography as a Tool for Better UX Design",
-    excerpt: "How the principles of photography composition can dramatically improve your approach to user interface design...",
-    date: "March 2024",
-    slug: "photography-as-ux-tool"
-  },
-  {
-    id: 4,
-    title: "The Psychology Behind Color Choices",
-    excerpt: "Understanding the emotional and psychological impact of color choices in digital design and how to leverage them effectively...",
-    date: "February 2024",
-    slug: "color-psychology"
-  },
-  {
-    id: 5,
-    title: "Lessons Learned from Remote Design Collaboration",
-    excerpt: "Key insights and practical tips for maintaining design quality and team cohesion in distributed creative teams...",
-    date: "February 2024",
-    slug: "remote-collaboration"
-  },
-  {
-    id: 6,
-    title: "Typography in the Age of Variable Fonts",
-    excerpt: "Exploring the creative possibilities and technical considerations of implementing variable fonts in modern web design...",
-    date: "February 2024",
-    slug: "variable-fonts"
-  },
-  {
-    id: 7,
-    title: "Creating Accessible Design Patterns",
-    excerpt: "Building inclusive design patterns that work for everyone, not just the majority of users...",
-    date: "January 2024",
-    slug: "accessible-design"
-  },
-  {
-    id: 8,
-    title: "The Intersection of Art and Technology",
-    excerpt: "How traditional art principles continue to influence and enhance contemporary digital design practices...",
-    date: "January 2024",
-    slug: "art-technology"
-  },
-  {
-    id: 9,
-    title: "Designing for Emotional Connection",
-    excerpt: "Creating user experiences that resonate on an emotional level and build lasting connections with your audience...",
-    date: "January 2024",
-    slug: "emotional-design"
-  },
-  {
-    id: 10,
-    title: "Future Trends in Digital Experience Design",
-    excerpt: "Predictions and emerging trends that will shape the future of digital experience design in the coming years...",
-    date: "December 2023",
-    slug: "future-trends"
-  }
+
 ]
 
 export const photoItems: PhotoItem[] = [
@@ -184,8 +122,12 @@ export const experiences: Experience[] = [
 
 export const randomItems: RandomItem[] = [
   {
-    title: "Coffee Enthusiast",
-    description: "I believe great design starts with great coffee. Currently exploring single-origin beans and the art of pour-over brewing."
+    title: "Weight Lifting",
+    description: "Bench: 255; Squat: 285x7; Deadlift: N/A"
+  },
+  {
+    title: "San Francisco",
+    description: "I was homeless for a period of time."
   },
 ]
 

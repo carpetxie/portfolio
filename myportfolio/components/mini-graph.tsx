@@ -78,10 +78,16 @@ export default function MiniGraph() {
   }
 
   const getNodeSize = (nodeId: string, type: string) => {
-    if (nodeId === state.currentNode) return type === "content" ? 2 : 5
-    if (nodeId === "home") return 4
-    if (type === "content") return 1
-    return 2
+    if (nodeId === state.currentNode) return type === "content" ? 3 : 7
+    if (nodeId === "home") return 6
+    if (type === "content") return 2
+    return 3
+  }
+  
+  // Safety check to ensure all nodes have valid sizes
+  const safeGetNodeSize = (nodeId: string, type: string) => {
+    const size = getNodeSize(nodeId, type)
+    return size || 2 // Default to 2 if undefined
   }
 
   const generateConnections = () => {
@@ -140,9 +146,9 @@ export default function MiniGraph() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
-        className="fixed top-20 left-6 z-40 w-32 h-28 bg-background/95 backdrop-blur-md border border-border rounded-lg p-2 shadow-lg"
+        className="fixed top-20 left-6 z-40 w-32 h-28 bg-transparent border-none shadow-none"
       >
-        <svg width="100%" height="100%" viewBox="0 0 120 80" className="opacity-90">
+        <svg width="100%" height="100%" viewBox="0 0 120 80" className="opacity-100">
           {connections.map((connection, index) => (
             <line
               key={`connection-${connection.from}-${connection.to}`}
@@ -173,28 +179,28 @@ export default function MiniGraph() {
               <circle
                 cx={node.x + 0.3}
                 cy={node.y + 0.5}
-                r={getNodeSize(node.id, node.type)}
+                r={safeGetNodeSize(node.id, node.type)}
                 fill="#000000"
                 opacity="0.06"
               />
               <motion.circle
                 cx={node.x}
                 cy={node.y}
-                r={getNodeSize(node.id, node.type)}
+                r={safeGetNodeSize(node.id, node.type)}
                 fill={`url(#nodeGradient)`}
                 stroke={getNodeColor(node.id)}
                 strokeWidth={node.id === state.currentNode ? 2 : 1}
                 filter="url(#nodeShadow)"
                 animate={{
-                  r: getNodeSize(node.id, node.type),
+                  r: safeGetNodeSize(node.id, node.type),
                   stroke: getNodeColor(node.id),
                 }}
                 transition={{ duration: 0.3 }}
               />
               <circle
-                cx={node.x - getNodeSize(node.id, node.type) * 0.2}
-                cy={node.y - getNodeSize(node.id, node.type) * 0.2}
-                r={getNodeSize(node.id, node.type) * 0.15}
+                cx={node.x - safeGetNodeSize(node.id, node.type) * 0.2}
+                cy={node.y - safeGetNodeSize(node.id, node.type) * 0.2}
+                r={safeGetNodeSize(node.id, node.type) * 0.15}
                 fill="#ffffff"
                 opacity="0.3"
               />

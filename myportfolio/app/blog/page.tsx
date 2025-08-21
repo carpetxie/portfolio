@@ -22,7 +22,7 @@ export default function BlogPage() {
 
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
-        <div className="max-w-6xl mx-auto px-6 py-4">
+                  <div className="max-w-6xl ml-0 pl-6 pr-2 py-4">
           <nav className="flex items-center justify-between">
             <Link href="/" className="font-serif text-xl font-bold hover:text-muted-foreground transition-colors">
               Portfolio
@@ -33,6 +33,9 @@ export default function BlogPage() {
               </Link>
               <Link href="/photography" className="text-muted-foreground hover:text-foreground transition-colors">
                 Photography
+              </Link>
+              <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
+                About
               </Link>
             </div>
           </nav>
