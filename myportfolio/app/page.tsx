@@ -102,8 +102,8 @@ export default function Portfolio() {
       {/* Node Graph Overlay */}
       {showNodeGraph && <NodeGraph onMainNodeClick={handleMainNodeClick} />}
 
-      {/* Mini Graph Component */}
-      <MiniGraph />
+      {/* Mini Graph Component - only show when not on landing page */}
+      {!showNodeGraph && <MiniGraph />}
 
       {/* Main Content - faded when node graph is showing */}
       <div className={`transition-opacity duration-500 ${showNodeGraph ? "opacity-0" : "opacity-100"}`}>

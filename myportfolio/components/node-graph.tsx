@@ -29,23 +29,23 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
   const generateNodes = (): Node[] => {
     const nodes: Node[] = [
       // Main center node
-      { id: "home", label: "Home", x: 400, y: 300, type: "main", clickable: true },
+      { id: "home", label: "Home", x: 600, y: 450, type: "main", clickable: true },
 
       // Category nodes
-      { id: "blog", label: "Blog", x: 200, y: 150, type: "category", parentId: "home" },
-      { id: "photography", label: "Photography", x: 600, y: 150, type: "category", parentId: "home" },
-      { id: "experiences", label: "Experiences", x: 200, y: 450, type: "category", parentId: "home" },
-      { id: "random", label: "Random", x: 600, y: 450, type: "category", parentId: "home" },
+      { id: "blog", label: "Blog", x: 300, y: 225, type: "category", parentId: "home" },
+      { id: "photography", label: "Photography", x: 900, y: 225, type: "category", parentId: "home" },
+      { id: "experiences", label: "Experiences", x: 300, y: 675, type: "category", parentId: "home" },
+      { id: "random", label: "Random", x: 900, y: 675, type: "category", parentId: "home" },
     ]
 
     blogPosts.forEach((post, index) => {
       const angle = (index / blogPosts.length) * Math.PI * 2
-      const radius = 80
+      const radius = 120
       nodes.push({
         id: `blog-${post.id}`,
         label: post.title.length > 20 ? post.title.substring(0, 20) + "..." : post.title,
-        x: Math.round((200 + Math.cos(angle - Math.PI / 2) * radius) * 100) / 100,
-        y: Math.round((150 + Math.sin(angle - Math.PI / 2) * radius) * 100) / 100,
+        x: Math.round((300 + Math.cos(angle - Math.PI / 2) * radius) * 100) / 100,
+        y: Math.round((225 + Math.sin(angle - Math.PI / 2) * radius) * 100) / 100,
         type: "content",
         parentId: "blog",
         href: `/blog/${post.slug}`,
@@ -55,12 +55,12 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
 
     photoItems.slice(0, 12).forEach((photo, index) => {
       const angle = (index / 12) * Math.PI * 2
-      const radius = 100
+      const radius = 150
       nodes.push({
         id: `photo-${photo.id}`,
         label: photo.title.length > 15 ? photo.title.substring(0, 15) + "..." : photo.title,
-        x: Math.round((600 + Math.cos(angle - Math.PI / 2) * radius) * 100) / 100,
-        y: Math.round((150 + Math.sin(angle - Math.PI / 2) * radius) * 100) / 100,
+        x: Math.round((900 + Math.cos(angle - Math.PI / 2) * radius) * 100) / 100,
+        y: Math.round((225 + Math.sin(angle - Math.PI / 2) * radius) * 100) / 100,
         type: "content",
         parentId: "photography",
         contentType: "photo",
@@ -69,9 +69,9 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
 
     experiences.forEach((exp, index) => {
       const positions = [
-        { x: 120, y: 380 },
-        { x: 160, y: 450 },
-        { x: 240, y: 500 },
+        { x: 180, y: 570 },
+        { x: 240, y: 675 },
+        { x: 360, y: 750 },
       ]
       const pos = positions[index] || positions[0]
       nodes.push({
@@ -87,10 +87,10 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
 
     randomItems.forEach((item, index) => {
       const positions = [
-        { x: 680, y: 380 },
-        { x: 720, y: 420 },
-        { x: 640, y: 480 },
-        { x: 580, y: 500 },
+        { x: 1020, y: 570 },
+        { x: 1080, y: 630 },
+        { x: 960, y: 720 },
+        { x: 870, y: 750 },
       ]
       const pos = positions[index] || positions[0]
       nodes.push({
@@ -133,9 +133,9 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
 
 
   const getNodeSize = (node: Node) => {
-    if (node.type === "main") return 20
-    if (node.type === "category") return 12
-    return 6
+    if (node.type === "main") return 30
+    if (node.type === "category") return 18
+    return 9
   }
 
   const handleNodeClick = (node: Node) => {
@@ -148,6 +148,29 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm">
+        {/* Floating particles background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-purple-300/20 rounded-full"
+              style={{
+                left: `${(i * 5.5) % 100}%`,
+                top: `${(i * 7.3) % 100}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.2, 0.6, 0.2],
+              }}
+              transition={{
+                duration: 3 + (i * 0.1),
+                repeat: Number.POSITIVE_INFINITY,
+                delay: i * 0.1,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -156,9 +179,9 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
       >
         <svg
           ref={svgRef}
-          width="800"
-          height="600"
-          viewBox="0 0 800 600"
+          width="1200"
+          height="900"
+          viewBox="0 0 1200 900"
           className="border border-border/20 rounded-lg bg-white/30"
         >
           <defs>
@@ -184,11 +207,20 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
                 x2={toNode.x}
                 y2={toNode.y}
                 stroke="#6b7280"
-                strokeWidth="1"
+                strokeWidth="2"
                 opacity={fromNode.id === "home" || toNode.id === "home" ? "0.8" : "0.4"}
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1, delay: index * 0.02 }}
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: fromNode.id === "home" || toNode.id === "home" ? 0.8 : 0.4 }}
+                transition={{ 
+                  duration: 1.5, 
+                  delay: 0.8 + index * 0.1,
+                  ease: "easeOut"
+                }}
+                whileHover={{
+                  strokeWidth: 3,
+                  opacity: 1,
+                  transition: { duration: 0.2 }
+                }}
               />
             )
           })}
@@ -210,18 +242,21 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
                   scale: 1,
                   opacity: node.type === "main" ? 1 : 0.3,
                 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.5 + index * 0.02,
+                style={{
+                  animation: `breathing 4s ease-in-out infinite`,
+                  animationDelay: `${index * 0.2}s`
                 }}
-                whileHover={
-                  node.clickable
-                    ? {
-                        scale: 1.2,
-                        filter: "url(#mainNodeGlow) brightness(1.2)",
-                      }
-                    : {}
-                }
+                transition={{
+                  duration: 0.8,
+                  delay: 0.3 + index * 0.1,
+                  ease: "easeOut"
+                }}
+
+                whileHover={{
+                  scale: 1.3,
+                  filter: "url(#mainNodeGlow) brightness(1.3)",
+                  transition: { duration: 0.2 }
+                }}
                 onMouseEnter={() => setHoveredNode(node.id)}
                 onMouseLeave={() => setHoveredNode(null)}
                 onClick={() => handleNodeClick(node)}
@@ -263,6 +298,31 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
                 >
                   {node.label}
                 </motion.text>
+              )}
+              
+              {/* Content preview tooltip on hover */}
+              {hoveredNode === node.id && node.type === "category" && (
+                <motion.foreignObject
+                  x={node.x + getNodeSize(node) + 10}
+                  y={node.y - 30}
+                  width="200"
+                  height="60"
+                  initial={{ opacity: 0, x: node.x + getNodeSize(node) + 5 }}
+                  animate={{ opacity: 1, x: node.x + getNodeSize(node) + 10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg border border-gray-200">
+                    <div className="text-xs font-medium text-gray-800 mb-1">
+                      {node.label}
+                    </div>
+                    <div className="text-xs text-gray-600">
+                      {node.id === "blog" && `${blogPosts.length} posts`}
+                      {node.id === "photography" && `${photoItems.length} photos`}
+                      {node.id === "experiences" && `${experiences.length} experiences`}
+                      {node.id === "random" && `${randomItems.length} items`}
+                    </div>
+                  </div>
+                </motion.foreignObject>
               )}
             </g>
           ))}
