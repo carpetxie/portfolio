@@ -1,6 +1,7 @@
 "use client"
 
 import { Github, Linkedin, Music, Twitter } from "lucide-react"
+import Image from "next/image"
 import MiniGraph from "@/components/mini-graph"
 import SharedNavigation from "@/components/shared-navigation"
 import { useNavigation } from "@/contexts/navigation-context"
@@ -86,9 +87,11 @@ export default function PhotographyPage() {
               {photos.length > 0 && (
                 <div className="mb-16">
                   <div className="aspect-[21/9] bg-muted rounded-lg overflow-hidden">
-                    <img
+                    <Image
                       src={photos[0].path}
                       alt={photos[0].title}
+                      width={1200}
+                      height={514}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>
@@ -104,9 +107,11 @@ export default function PhotographyPage() {
                 {photos.map((photo) => (
                   <div key={photo.id} className="group cursor-pointer">
                     <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                      <img
+                      <Image
                         src={photo.path}
                         alt={photo.title}
+                        width={400}
+                        height={400}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
@@ -131,9 +136,11 @@ export default function PhotographyPage() {
                     return (
                       <div key={category} className="group cursor-pointer">
                         <div className="aspect-[4/3] bg-muted rounded-lg overflow-hidden mb-4">
-                          <img
+                          <Image
                             src={samplePhoto?.path || `/placeholder.svg?height=300&width=400&query=${category}`}
                             alt={category}
+                            width={400}
+                            height={300}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
                         </div>

@@ -88,7 +88,7 @@ export default function CurrentInterests() {
             </div>
             <div className="text-center p-2 bg-white/10 rounded-lg border border-white/20 hover:border-primary/30 transition-all duration-300 hover:scale-105 hover:bg-white/15 group/sub">
               <div className="text-lg mb-1 group-hover/sub:rotate-6 transition-transform duration-300">🤖</div>
-              <div className="text-xs text-gray-200">Automating Parents' Jobs</div>
+              <div className="text-xs text-gray-200">Automating Parents&apos; Jobs</div>
               <div className="w-1 h-1 bg-primary/60 rounded-full mx-auto mt-1 opacity-0 group-hover/sub:opacity-100 transition-opacity duration-300"></div>
             </div>
             <div className="text-center p-2 bg-white/10 rounded-lg border border-white/20 hover:border-primary/30 transition-all duration-300 hover:scale-105 hover:bg-white/15 group/sub">
@@ -169,7 +169,7 @@ export default function CurrentInterests() {
             Current Interests
           </h2>
           <p className={`text-xl text-gray-300 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            What's capturing my attention right now
+            What&apos;s capturing my attention right now
           </p>
         </div>
         
