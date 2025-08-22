@@ -17,11 +17,9 @@ export default function Portfolio() {
   const fullText = "Jeffrey Xie"
   
   const phrases = useMemo(() => [
-    "I study mathematics.",
+    "I study math.",
     "I am a researcher.",
-    "I am gay",
-    "I hope you didn't catch that...",
-    "I explore machine learning."
+    "Thanks for checking this out."
   ], [])
   
   useEffect(() => {
