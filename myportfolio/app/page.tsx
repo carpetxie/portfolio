@@ -4,7 +4,7 @@ import { Github, Linkedin, Music, Twitter } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect } from "react"
 import NodeGraph from "@/components/node-graph"
 import MiniGraph from "@/components/mini-graph"
 import CurrentInterests from "@/components/current-interests"
@@ -15,18 +15,17 @@ import { experiences, randomItems } from "@/lib/content-data"
 export default function Portfolio() {
   const [showNodeGraph, setShowNodeGraph] = useState(true)
   const { showMiniGraph, setCurrentNode } = useNavigation()
-    const [displayedText, setDisplayedText] = useState("")
+  const [displayedText, setDisplayedText] = useState("")
   const [displayedParagraph, setDisplayedParagraph] = useState("")
+  const [displayedIntro, setDisplayedIntro] = useState("")
   const fullText = "Jeffrey Xie"
-  
-  const phrases = useMemo(() => [
-    "I study math.",
-    "I am a researcher.",
-    "Thanks for checking this out."
-  ], [])
+  const paragraphText = "Studying cs/math at Dartmouth College"
+  const introText = "Hello! I'm Jeffrey, a software engineer broadly interested in full-stack, ml and graph algorithms. Outside of academics, I lift, hike, play violin, take pictures of cool places and watch horror movies."
   
   useEffect(() => {
     let headingIndex = 0
+    let paragraphIndex = 0
+    let introIndex = 0
 
     const headingInterval = setInterval(() => {
       if (headingIndex <= fullText.length) {
@@ -39,58 +38,32 @@ export default function Portfolio() {
       }
     }, 200) // Slower typing for heading
 
+    // Start paragraph typing after heading is done
+    const paragraphInterval = setInterval(() => {
+      if (paragraphIndex <= paragraphText.length) {
+        setDisplayedParagraph(paragraphText.slice(0, paragraphIndex))
+        paragraphIndex++
+      } else {
+        clearInterval(paragraphInterval)
+      }
+    }, 50) // Medium typing speed for paragraph
+
+    // Start intro typing after paragraph is done
+    const introInterval = setInterval(() => {
+      if (introIndex <= introText.length) {
+        setDisplayedIntro(introText.slice(0, introIndex))
+        introIndex++
+      } else {
+        clearInterval(introInterval)
+      }
+    }, 15) // Fast typing for intro
+
     return () => {
       clearInterval(headingInterval)
+      clearInterval(paragraphInterval)
+      clearInterval(introInterval)
     }
-  }, [])
-
-  // Separate useEffect for phrase cycling
-  useEffect(() => {
-    let currentPhraseIndex = 0
-    let phraseIndex = 0
-    let isDeleting = false
-
-    const phraseInterval = setInterval(() => {
-      const currentPhrase = phrases[currentPhraseIndex]
-      
-      if (!isDeleting) {
-        // Typing out the phrase
-        if (phraseIndex <= currentPhrase.length) {
-          setDisplayedParagraph(currentPhrase.slice(0, phraseIndex))
-          phraseIndex++
-        } else {
-          // Wait 2 seconds before deleting
-          isDeleting = true
-          setTimeout(() => {
-            // Start deleting after 2 seconds
-            const deleteInterval = setInterval(() => {
-              if (phraseIndex > 0) {
-                phraseIndex--
-                setDisplayedParagraph(currentPhrase.slice(0, phraseIndex))
-              } else {
-                // Finished deleting, move to next phrase
-                clearInterval(deleteInterval)
-                isDeleting = false
-                phraseIndex = 0
-                
-                if (currentPhraseIndex < phrases.length - 1) {
-                  currentPhraseIndex++
-                  console.log('Moving to phrase:', currentPhraseIndex, 'which is:', phrases[currentPhraseIndex])
-                } else {
-                  console.log('Reached last phrase, stopping')
-                  clearInterval(phraseInterval)
-                }
-              }
-            }, 50) // Fast deletion
-          }, 2000) // Wait 2 seconds before starting to delete
-        }
-      }
-    }, 100) // Slower speed for phrase typing
-
-    return () => {
-      clearInterval(phraseInterval)
-    }
-  }, [phrases])
+  }, [introText])
 
   const handleMainNodeClick = () => {
     setShowNodeGraph(false)
@@ -133,17 +106,22 @@ export default function Portfolio() {
             {displayedParagraph}
             <span className="animate-pulse">|</span>
           </p>
+          
+          {/* Personal Introduction - Replacing "Learn more about me" link */}
           <div className="mb-20">
-            <Link 
-              href="/about" 
-              className="inline-flex items-center gap-2 text-lg text-primary hover:text-primary/80 transition-colors duration-300 group"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 2.5 }}
+              className="max-w-2xl mx-auto"
             >
-              <span className="relative">
-                Learn more about me
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-              </span>
-              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-            </Link>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                {displayedIntro}
+                <span className="animate-pulse">|</span>
+              </p>
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              </div>
+            </motion.div>
           </div>
           </div>
         </section>

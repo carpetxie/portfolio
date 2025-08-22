@@ -165,8 +165,6 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
 
   const connections = generateConnections()
 
-
-
   const getNodeSize = (node: Node) => {
     if (node.type === "main") return 30
     if (node.type === "category") return 18
@@ -179,28 +177,27 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
     }
   }
 
-
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm">
-        {/* Floating particles background */}
+        {/* Enhanced floating particles background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {Array.from({ length: 20 }).map((_, i) => (
+          {Array.from({ length: 30 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-purple-300/20 rounded-full"
+              className="absolute w-1 h-1 bg-gradient-to-r from-purple-400/30 to-blue-400/30 rounded-full"
               style={{
-                left: `${(i * 5.5) % 100}%`,
-                top: `${(i * 7.3) % 100}%`,
+                left: `${(i * 3.7) % 100}%`,
+                top: `${(i * 5.3) % 100}%`,
               }}
               animate={{
-                y: [0, -20, 0],
-                opacity: [0.2, 0.6, 0.2],
+                y: [0, -30, 0],
+                opacity: [0.1, 0.8, 0.1],
+                scale: [0.5, 1.2, 0.5],
               }}
               transition={{
-                duration: 3 + (i * 0.1),
+                duration: 4 + (i * 0.2),
                 repeat: Number.POSITIVE_INFINITY,
-                delay: i * 0.1,
+                delay: i * 0.15,
                 ease: "easeInOut",
               }}
             />
@@ -220,13 +217,39 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
           className="border border-border/20 rounded-lg bg-white/30"
         >
           <defs>
-            <filter id="mainNodeGlow">
-              <feGaussianBlur stdDeviation="8" result="coloredBlur" />
+            {/* Enhanced glow filters */}
+            <filter id="mainNodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur1" />
+              <feGaussianBlur stdDeviation="6" result="coloredBlur2" />
+              <feGaussianBlur stdDeviation="12" result="coloredBlur3" />
+              <feMerge>
+                <feMergeNode in="coloredBlur1" />
+                <feMergeNode in="coloredBlur2" />
+                <feMergeNode in="coloredBlur3" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            
+            <filter id="categoryNodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
               <feMerge>
                 <feMergeNode in="coloredBlur" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
+
+            {/* Gradient definitions */}
+            <radialGradient id="homeNodeGradient" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#a78bfa" stopOpacity="1" />
+              <stop offset="70%" stopColor="#8b5cf6" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#7c3aed" stopOpacity="0.6" />
+            </radialGradient>
+            
+            <radialGradient id="homeGlowGradient" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#c4b5fd" stopOpacity="0.8" />
+              <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+            </radialGradient>
           </defs>
 
           {connections.map((connection, index) => {
@@ -241,18 +264,18 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
                 y1={fromNode.y}
                 x2={toNode.x}
                 y2={toNode.y}
-                stroke="#6b7280"
-                strokeWidth="2"
-                opacity={fromNode.id === "home" || toNode.id === "home" ? "0.8" : "0.4"}
+                stroke={fromNode.id === "home" || toNode.id === "home" ? "#8b5cf6" : "#6b7280"}
+                strokeWidth={fromNode.id === "home" || toNode.id === "home" ? "3" : "2"}
+                opacity={fromNode.id === "home" || toNode.id === "home" ? "0.9" : "0.4"}
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: fromNode.id === "home" || toNode.id === "home" ? 0.8 : 0.4 }}
+                animate={{ pathLength: 1, opacity: fromNode.id === "home" || toNode.id === "home" ? 0.9 : 0.4 }}
                 transition={{ 
                   duration: 1.5, 
                   delay: 0.8 + index * 0.1,
                   ease: "easeOut"
                 }}
                 whileHover={{
-                  strokeWidth: 3,
+                  strokeWidth: fromNode.id === "home" || toNode.id === "home" ? 4 : 3,
                   opacity: 1,
                   transition: { duration: 0.2 }
                 }}
@@ -263,13 +286,82 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
           {/* Render nodes */}
           {nodes.map((node, index) => (
             <g key={node.id}>
+              {/* Enhanced main node with multiple glow layers */}
+              {node.type === "main" && (
+                <>
+                  {/* Outer glow ring */}
+                  <motion.circle
+                    cx={node.x}
+                    cy={node.y}
+                    r={getNodeSize(node) + 20}
+                    fill="url(#homeGlowGradient)"
+                    opacity="0.6"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{
+                      scale: [1, 1.4, 1],
+                      opacity: [0.6, 0.8, 0.6],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  
+                  {/* Middle glow ring */}
+                  <motion.circle
+                    cx={node.x}
+                    cy={node.y}
+                    r={getNodeSize(node) + 12}
+                    fill="url(#homeGlowGradient)"
+                    opacity="0.4"
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.4, 0.6, 0.4],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                      delay: 0.5,
+                    }}
+                  />
+                  
+                  {/* Inner glow ring */}
+                  <motion.circle
+                    cx={node.x}
+                    cy={node.y}
+                    r={getNodeSize(node) + 6}
+                    fill="none"
+                    stroke="#a78bfa"
+                    strokeWidth="2"
+                    opacity="0.7"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0.7, 0.9, 0.7],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                      delay: 1,
+                    }}
+                  />
+                </>
+              )}
+
+              {/* Main node circle */}
               <motion.circle
                 cx={node.x}
                 cy={node.y}
                 r={getNodeSize(node)}
-                fill={node.type === "main" ? "#a78bfa" : "#c4b5fd"}
-                stroke="none"
-                filter={node.type === "main" ? "url(#mainNodeGlow)" : "none"}
+                fill={node.type === "main" ? "url(#homeNodeGradient)" : "#c4b5fd"}
+                stroke={node.type === "main" ? "#8b5cf6" : "none"}
+                strokeWidth={node.type === "main" ? "2" : "0"}
+                filter={node.type === "main" ? "url(#mainNodeGlow)" : 
+                       node.type === "category" ? "url(#categoryNodeGlow)" : "none"}
                 opacity={node.type === "main" ? 1 : 0.3}
                 className={node.clickable ? "cursor-pointer" : "cursor-default"}
                 initial={{ scale: 0, opacity: 0 }}
@@ -277,19 +369,15 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
                   scale: 1,
                   opacity: node.type === "main" ? 1 : 0.3,
                 }}
-                style={{
-                  animation: `breathing 4s ease-in-out infinite`,
-                  animationDelay: `${index * 0.2}s`
-                }}
                 transition={{
                   duration: 0.8,
                   delay: 0.3 + index * 0.1,
                   ease: "easeOut"
                 }}
-
                 whileHover={{
-                  scale: 1.3,
-                  filter: "url(#mainNodeGlow) brightness(1.3)",
+                  scale: node.type === "main" ? 1.4 : 1.3,
+                  filter: node.type === "main" ? "url(#mainNodeGlow) brightness(1.5)" : 
+                          "url(#categoryNodeGlow) brightness(1.3)",
                   transition: { duration: 0.2 }
                 }}
                 onMouseEnter={() => setHoveredNode(node.id)}
@@ -297,26 +385,58 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
                 onClick={() => handleNodeClick(node)}
               />
 
+              {/* Click indicator for home node */}
               {node.type === "main" && (
-                <motion.circle
-                  cx={node.x}
-                  cy={node.y}
-                  r={getNodeSize(node) + 6}
-                  fill="none"
-                  stroke="#a78bfa"
-                  strokeWidth="1"
-                  opacity="0.5"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{
-                    scale: [1, 1.3, 1],
-                    opacity: [0.5, 0.8, 0.5],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
-                />
+                <motion.g>
+                  {/* Pulsing dots around the home node */}
+                  {Array.from({ length: 8 }).map((_, i) => {
+                    const angle = (i / 8) * Math.PI * 2
+                    const radius = getNodeSize(node) + 25
+                    const dotX = node.x + Math.cos(angle) * radius
+                    const dotY = node.y + Math.sin(angle) * radius
+                    
+                    return (
+                      <motion.circle
+                        key={i}
+                        cx={dotX}
+                        cy={dotY}
+                        r="2"
+                        fill="#a78bfa"
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{
+                          opacity: [0, 1, 0],
+                          scale: [0, 1, 0],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Number.POSITIVE_INFINITY,
+                          delay: i * 0.25,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    )
+                  })}
+                  
+                  {/* "Click me" text indicator */}
+                  <motion.text
+                    x={node.x}
+                    y={node.y + getNodeSize(node) + 45}
+                    textAnchor="middle"
+                    className="fill-purple-600 text-xs font-bold pointer-events-none"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{
+                      opacity: [0.7, 1, 0.7],
+                      y: [10, 0, 10],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    CLICK ME!
+                  </motion.text>
+                </motion.g>
               )}
 
               {/* Node labels */}
@@ -363,21 +483,38 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
           ))}
         </svg>
 
-        {/* Instructions */}
+        {/* Enhanced instructions */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.5 }}
-          className="absolute -bottom-16 left-0 right-0 text-center font-sans"
+          className="absolute -bottom-20 left-0 right-0 text-center font-sans"
         >
-          <motion.p
-            className="text-gray-700 text-sm"
-            animate={{ opacity: [0.7, 1, 0.7] }}
+          <motion.div
+            className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-purple-200"
+            animate={{ 
+              boxShadow: [
+                "0 4px 6px -1px rgba(139, 92, 246, 0.1)",
+                "0 10px 15px -3px rgba(139, 92, 246, 0.2)",
+                "0 4px 6px -1px rgba(139, 92, 246, 0.1)"
+              ]
+            }}
             transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
           >
-            Click the <span className="text-purple-600 font-medium">Home</span> node to enter
-          </motion.p>
-          <p className="text-gray-500 text-xs mt-1">
+            <motion.div
+              className="w-3 h-3 bg-purple-500 rounded-full"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            />
+            <motion.p
+              className="text-gray-700 text-sm font-medium"
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            >
+              Click the <span className="text-purple-600 font-bold">Home</span> node to enter
+            </motion.p>
+          </motion.div>
+          <p className="text-gray-500 text-xs mt-3">
             {blogPosts.length} posts • {photoItems.length || 0} photos • {experiences.length} experiences
           </p>
         </motion.div>

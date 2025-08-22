@@ -55,8 +55,8 @@ export const experiences: Experience[] = [
     description: "Research internship in machine learning applications"
   },
   {
-    title: "Software Engineer Intern",
-    company: "Adaptional (YCS25)",
+    title: "Early Engineer",
+    company: "Adaptional (YC S25)",
     period: "May 2025 - Aug 2025",
     description: "Designed property-merging algorithm with LLM parallelization, improving inference speed 2x and edge-case accuracy 90%."
   },

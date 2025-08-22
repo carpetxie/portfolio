@@ -64,7 +64,7 @@ export default function PhotographyPage() {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="font-serif text-4xl md:text-5xl font-bold mb-6">Photography</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Forgive the low HD until I save up for an actual camera pls. 
+            Forgive the low HD until I save up for an actual camera please. 
           </p>
         </div>
       </section>

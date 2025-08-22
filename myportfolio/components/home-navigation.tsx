@@ -15,45 +15,31 @@ export default function HomeNavigation() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
       <div className="max-w-6xl ml-0 pl-6 pr-2 py-4">
-        <nav className="flex items-center justify-between">
-          <Link 
-            href="/" 
-            className="font-sans text-xl font-bold hover:text-primary transition-colors"
+        <nav className="hidden md:flex items-center space-x-8">
+          <Link
+            href="/"
+            className={`text-sm font-medium transition-colors duration-200 ${
+              isActive("/") ? "text-primary" : "text-muted-foreground hover:text-foreground"
+            }`}
           >
-            Portfolio
+            Home
           </Link>
-          <div className="hidden md:flex items-center space-x-8">
-            <Link 
-              href="/blog" 
-              className={`transition-colors ${
-                isActive("/blog") 
-                  ? "text-foreground font-medium" 
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Blog
-            </Link>
-            <Link 
-              href="/photography" 
-              className={`transition-colors ${
-                isActive("/photography") 
-                  ? "text-foreground font-medium" 
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Photography
-            </Link>
-            <Link 
-              href="/about" 
-              className={`transition-colors ${
-                isActive("/about") 
-                  ? "text-foreground font-medium" 
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              About
-            </Link>
-          </div>
+          <Link
+            href="/blog"
+            className={`text-sm font-medium transition-colors duration-200 ${
+              isActive("/blog") ? "text-primary" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Blog
+          </Link>
+          <Link
+            href="/photography"
+            className={`text-sm font-medium transition-colors duration-200 ${
+              isActive("/photography") ? "text-primary" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Photography
+          </Link>
         </nav>
       </div>
     </header>
