@@ -2,9 +2,17 @@
 
 import { motion } from "framer-motion"
 import { useNavigation } from "@/contexts/navigation-context"
-import { blogPosts, photoItems } from "@/lib/content-data"
+import { photoItems } from "@/lib/content-data"
 import { useState, useEffect } from "react"
 import PathAnimation from "./path-animation"
+
+interface BlogPost {
+  id: string
+  title: string
+  excerpt: string
+  date: string
+  slug: string
+}
 
 interface MiniNode {
   id: string
@@ -18,6 +26,15 @@ export default function MiniGraph() {
   const { state } = useNavigation()
   const [showPathAnimation, setShowPathAnimation] = useState(false)
   const [animationPath, setAnimationPath] = useState<{ from: string; to: string } | null>(null)
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
+
+  useEffect(() => {
+    // Fetch blog posts from API
+    fetch('/api/blog-posts')
+      .then(res => res.json())
+      .then(data => setBlogPosts(data))
+      .catch(err => console.error('Failed to fetch blog posts:', err))
+  }, [])
 
   useEffect(() => {
     if (state.previousNode && state.currentNode && state.previousNode !== state.currentNode) {

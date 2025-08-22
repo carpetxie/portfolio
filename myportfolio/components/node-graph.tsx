@@ -1,8 +1,16 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import { blogPosts, photoItems, experiences, randomItems } from "@/lib/content-data"
+import { photoItems, experiences, randomItems } from "@/lib/content-data"
+
+interface BlogPost {
+  id: string
+  title: string
+  excerpt: string
+  date: string
+  slug: string
+}
 
 interface Node {
   id: string
@@ -24,6 +32,15 @@ interface Connection {
 export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => void }) {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const svgRef = useRef<SVGSVGElement>(null)
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
+
+  useEffect(() => {
+    // Fetch blog posts from API
+    fetch('/api/blog-posts')
+      .then(res => res.json())
+      .then(data => setBlogPosts(data))
+      .catch(err => console.error('Failed to fetch blog posts:', err))
+  }, [])
 
   // Generate nodes dynamically based on content data
   const generateNodes = (): Node[] => {

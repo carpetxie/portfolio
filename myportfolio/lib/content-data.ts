@@ -1,10 +1,4 @@
-export interface BlogPost {
-  id: number
-  title: string
-  excerpt: string
-  date: string
-  slug: string
-}
+import { getAllBlogPosts } from './blog-utils'
 
 export interface PhotoItem {
   id: number
@@ -24,17 +18,6 @@ export interface RandomItem {
   title: string
   description: string
 }
-
-export const blogPosts: BlogPost[] = [
-  {
-    id: 1,
-    title: "Placeholder",
-    excerpt: "",
-    date: "August 2025",
-    slug: "evolution-of-minimalist-design"
-  },
-
-]
 
 export const photoItems: PhotoItem[] = [
   {
