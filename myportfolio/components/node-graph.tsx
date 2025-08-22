@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import { photoItems, experiences, randomItems } from "@/lib/content-data"
+import { experiences, randomItems } from "@/lib/content-data"
 
 interface BlogPost {
   id: string
@@ -10,6 +10,15 @@ interface BlogPost {
   excerpt: string
   date: string
   slug: string
+}
+
+interface PhotoItem {
+  id: string
+  title: string
+  category: string
+  description?: string
+  filename: string
+  path: string
 }
 
 interface Node {
@@ -33,6 +42,7 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const svgRef = useRef<SVGSVGElement>(null)
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
+  const [photoItems, setPhotoItems] = useState<PhotoItem[]>([])
 
   useEffect(() => {
     // Fetch blog posts from API
@@ -40,6 +50,12 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
       .then(res => res.json())
       .then(data => setBlogPosts(data))
       .catch(err => console.error('Failed to fetch blog posts:', err))
+
+    // Fetch photo items from API
+    fetch('/api/photos')
+      .then(res => res.json())
+      .then(data => setPhotoItems(data))
+      .catch(err => console.error('Failed to fetch photo items:', err))
   }, [])
 
   // Generate nodes dynamically based on content data
@@ -70,19 +86,21 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
       })
     })
 
-    photoItems.slice(0, 12).forEach((photo, index) => {
-      const angle = (index / 12) * Math.PI * 2
-      const radius = 150
-      nodes.push({
-        id: `photo-${photo.id}`,
-        label: photo.title.length > 15 ? photo.title.substring(0, 15) + "..." : photo.title,
-        x: Math.round((900 + Math.cos(angle - Math.PI / 2) * radius) * 100) / 100,
-        y: Math.round((225 + Math.sin(angle - Math.PI / 2) * radius) * 100) / 100,
-        type: "content",
-        parentId: "photography",
-        contentType: "photo",
+    if (photoItems.length > 0) {
+      photoItems.slice(0, 12).forEach((photo, index) => {
+        const angle = (index / 12) * Math.PI * 2
+        const radius = 150
+        nodes.push({
+          id: `photo-${photo.id}`,
+          label: photo.title.length > 15 ? photo.title.substring(0, 15) + "..." : photo.title,
+          x: Math.round((900 + Math.cos(angle - Math.PI / 2) * radius) * 100) / 100,
+          y: Math.round((225 + Math.sin(angle - Math.PI / 2) * radius) * 100) / 100,
+          type: "content",
+          parentId: "photography",
+          contentType: "photo",
+        })
       })
-    })
+    }
 
     experiences.forEach((exp, index) => {
       const positions = [
@@ -334,7 +352,7 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
                     </div>
                     <div className="text-xs text-gray-600">
                       {node.id === "blog" && `${blogPosts.length} posts`}
-                      {node.id === "photography" && `${photoItems.length} photos`}
+                      {node.id === "photography" && `${photoItems.length || 0} photos`}
                       {node.id === "experiences" && `${experiences.length} experiences`}
                       {node.id === "random" && `${randomItems.length} items`}
                     </div>
@@ -360,7 +378,7 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
             Click the <span className="text-purple-600 font-medium">Home</span> node to enter
           </motion.p>
           <p className="text-gray-500 text-xs mt-1">
-            {blogPosts.length} posts • {photoItems.length} photos • {experiences.length} experiences
+            {blogPosts.length} posts • {photoItems.length || 0} photos • {experiences.length} experiences
           </p>
         </motion.div>
       </motion.div>

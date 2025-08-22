@@ -1,5 +1,3 @@
-import { getAllBlogPosts } from './blog-utils'
-
 export interface PhotoItem {
   id: number
   title: string
@@ -18,69 +16,6 @@ export interface RandomItem {
   title: string
   description: string
 }
-
-export const photoItems: PhotoItem[] = [
-  {
-    id: 1,
-    title: "Golden Hour Reflections",
-    category: "Nature"
-  },
-  {
-    id: 2,
-    title: "Urban Geometry",
-    category: "Architecture"
-  },
-  {
-    id: 3,
-    title: "Street Life",
-    category: "Street"
-  },
-  {
-    id: 4,
-    title: "Abstract Forms",
-    category: "Abstract"
-  },
-  {
-    id: 5,
-    title: "Portrait Series",
-    category: "Portrait"
-  },
-  {
-    id: 6,
-    title: "Landscape Views",
-    category: "Landscape"
-  },
-  {
-    id: 7,
-    title: "Still Life",
-    category: "Still Life"
-  },
-  {
-    id: 8,
-    title: "Documentary",
-    category: "Documentary"
-  },
-  {
-    id: 9,
-    title: "City Lights",
-    category: "Urban"
-  },
-  {
-    id: 10,
-    title: "Mountain Peaks",
-    category: "Landscape"
-  },
-  {
-    id: 11,
-    title: "Human Stories",
-    category: "Documentary"
-  },
-  {
-    id: 12,
-    title: "Modern Architecture",
-    category: "Architecture"
-  }
-]
 
 export const experiences: Experience[] = [
   {

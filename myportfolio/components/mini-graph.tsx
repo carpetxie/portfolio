@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion"
 import { useNavigation } from "@/contexts/navigation-context"
-import { photoItems } from "@/lib/content-data"
 import { useState, useEffect } from "react"
 import PathAnimation from "./path-animation"
 
@@ -12,6 +11,15 @@ interface BlogPost {
   excerpt: string
   date: string
   slug: string
+}
+
+interface PhotoItem {
+  id: string
+  title: string
+  category: string
+  description?: string
+  filename: string
+  path: string
 }
 
 interface MiniNode {
@@ -27,6 +35,7 @@ export default function MiniGraph() {
   const [showPathAnimation, setShowPathAnimation] = useState(false)
   const [animationPath, setAnimationPath] = useState<{ from: string; to: string } | null>(null)
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
+  const [photos, setPhotos] = useState<PhotoItem[]>([])
 
   useEffect(() => {
     // Fetch blog posts from API
@@ -34,6 +43,12 @@ export default function MiniGraph() {
       .then(res => res.json())
       .then(data => setBlogPosts(data))
       .catch(err => console.error('Failed to fetch blog posts:', err))
+    
+    // Fetch photos from API
+    fetch('/api/photos')
+      .then(res => res.json())
+      .then(data => setPhotos(data))
+      .catch(err => console.error('Failed to fetch photos:', err))
   }, [])
 
   useEffect(() => {
@@ -71,17 +86,19 @@ export default function MiniGraph() {
     })
 
     // Add sub-nodes for photography
-    photoItems.slice(0, 4).forEach((photo, index) => {
-      const angle = (index / 4) * Math.PI * 2
-      const radius = 12
-      nodes.push({
-        id: `photo-${photo.id}`,
-        x: Math.round((90 + Math.cos(angle - Math.PI / 2) * radius) * 100) / 100,
-        y: Math.round((20 + Math.sin(angle - Math.PI / 2) * radius) * 100) / 100,
-        type: "content",
-        parentId: "photography",
+    if (photos.length > 0) {
+      photos.slice(0, 4).forEach((photo, index) => {
+        const angle = (index / 4) * Math.PI * 2
+        const radius = 12
+        nodes.push({
+          id: `photo-${photo.id}`,
+          x: Math.round((90 + Math.cos(angle - Math.PI / 2) * radius) * 100) / 100,
+          y: Math.round((20 + Math.sin(angle - Math.PI / 2) * radius) * 100) / 100,
+          type: "content",
+          parentId: "photography",
+        })
       })
-    })
+    }
 
     return nodes
   }

@@ -4,15 +4,51 @@ import { Github, Linkedin, Music, Twitter } from "lucide-react"
 import Link from "next/link"
 import MiniGraph from "@/components/mini-graph"
 import { useNavigation } from "@/contexts/navigation-context"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+
+interface PhotoItem {
+  id: string
+  title: string
+  category: string
+  description?: string
+  filename: string
+  path: string
+}
 
 export default function PhotographyPage() {
   const { setCurrentNode, showMiniGraph } = useNavigation()
+  const [photos, setPhotos] = useState<PhotoItem[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setCurrentNode("photography")
     showMiniGraph()
   }, [setCurrentNode, showMiniGraph])
+
+  useEffect(() => {
+    // Fetch photos from API
+    fetch('/api/photos')
+      .then(res => res.json())
+      .then(data => {
+        setPhotos(data)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error('Failed to fetch photos:', err)
+        setLoading(false)
+      })
+  }, [])
+
+  // Group photos by category
+  const photosByCategory = photos.reduce((acc, photo) => {
+    if (!acc[photo.category]) {
+      acc[photo.category] = []
+    }
+    acc[photo.category].push(photo)
+    return acc
+  }, {} as Record<string, PhotoItem[]>)
+
+  const categories = Object.keys(photosByCategory)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -46,7 +82,7 @@ export default function PhotographyPage() {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="font-serif text-4xl md:text-5xl font-bold mb-6">Photography</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Capturing moments and emotions through the lens. A collection of my visual stories.
+            Forgive the low HD until I save up for an actual camera pls. 
           </p>
         </div>
       </section>
@@ -54,75 +90,81 @@ export default function PhotographyPage() {
       {/* Photography Gallery */}
       <section className="pb-20 px-6">
         <div className="max-w-7xl mx-auto">
-          {/* Featured Photo */}
-          <div className="mb-16">
-            <div className="aspect-[21/9] bg-muted rounded-lg overflow-hidden">
-              <img
-                src="/placeholder.svg?height=600&width=1400"
-                alt="Featured Photography"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+              <p className="mt-4 text-muted-foreground">Loading photos...</p>
             </div>
-            <div className="mt-4 text-center">
-              <h3 className="font-serif text-lg font-medium mb-1">Golden Hour Reflections</h3>
-              <p className="text-sm text-muted-foreground">Captured at Lake Tahoe, California • 2024</p>
+          ) : photos.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">No photos yet. Add some photos to the content/photos folder!</p>
             </div>
-          </div>
-
-          {/* Main Gallery Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {Array.from({ length: 24 }, (_, i) => {
-              const categories = ["portrait", "landscape", "street", "architecture", "nature", "urban"]
-              const category = categories[i % categories.length]
-              const aspectRatios = ["aspect-square", "aspect-[4/5]", "aspect-[3/4]"]
-              const aspectRatio = aspectRatios[i % aspectRatios.length]
-
-              return (
-                <div key={i + 1} className="group cursor-pointer">
-                  <div className={`${aspectRatio} bg-muted rounded-lg overflow-hidden`}>
+          ) : (
+            <>
+              {/* Featured Photo */}
+              {photos.length > 0 && (
+                <div className="mb-16">
+                  <div className="aspect-[21/9] bg-muted rounded-lg overflow-hidden">
                     <img
-                      src={`/placeholder.svg?height=400&width=400&query=minimalist ${category} photography ${i + 1}`}
-                      alt={`Photography ${i + 1}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      src={photos[0].path}
+                      alt={photos[0].title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>
-                  <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <h4 className="font-serif text-sm font-medium capitalize">
-                      {category} Study #{i + 1}
-                    </h4>
-                    <p className="text-xs text-muted-foreground">2024</p>
+                  <div className="mt-4 text-center">
+                    <h3 className="font-serif text-lg font-medium mb-1">{photos[0].title}</h3>
+                    <p className="text-sm text-muted-foreground">{photos[0].category} • {photos[0].filename}</p>
                   </div>
                 </div>
-              )
-            })}
-          </div>
+              )}
 
-          {/* Photography Categories */}
-          <div className="mt-20 pt-16 border-t border-border">
-            <h2 className="font-serif text-2xl font-bold mb-8 text-center">Categories</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                { name: "Portraits", count: 8, image: "portrait photography collection" },
-                { name: "Landscapes", count: 6, image: "landscape photography collection" },
-                { name: "Street", count: 5, image: "street photography collection" },
-                { name: "Architecture", count: 3, image: "architecture photography collection" },
-                { name: "Nature", count: 4, image: "nature photography collection" },
-                { name: "Urban", count: 2, image: "urban photography collection" },
-              ].map((category, i) => (
-                <div key={i} className="group cursor-pointer">
-                  <div className="aspect-[4/3] bg-muted rounded-lg overflow-hidden mb-4">
-                    <img
-                      src={`/placeholder.svg?height=300&width=400&query=minimalist ${category.image}`}
-                      alt={category.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+              {/* Main Gallery Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {photos.map((photo) => (
+                  <div key={photo.id} className="group cursor-pointer">
+                    <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                      <img
+                        src={photo.path}
+                        alt={photo.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h4 className="font-serif text-sm font-medium">
+                        {photo.title}
+                      </h4>
+                      <p className="text-xs text-muted-foreground">{photo.category}</p>
+                    </div>
                   </div>
-                  <h3 className="font-serif text-lg font-semibold mb-1">{category.name}</h3>
-                  <p className="text-sm text-muted-foreground">{category.count} photos</p>
+                ))}
+              </div>
+
+              {/* Photography Categories */}
+              <div className="mt-20 pt-16 border-t border-border">
+                <h2 className="font-serif text-2xl font-bold mb-8 text-center">Categories</h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {categories.map((category) => {
+                    const categoryPhotos = photosByCategory[category]
+                    const samplePhoto = categoryPhotos[0]
+                    
+                    return (
+                      <div key={category} className="group cursor-pointer">
+                        <div className="aspect-[4/3] bg-muted rounded-lg overflow-hidden mb-4">
+                          <img
+                            src={samplePhoto?.path || `/placeholder.svg?height=300&width=400&query=${category}`}
+                            alt={category}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <h3 className="font-serif text-lg font-semibold mb-1">{category}</h3>
+                        <p className="text-sm text-muted-foreground">{categoryPhotos.length} photos</p>
+                      </div>
+                    )
+                  })}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
+            </>
+          )}
         </div>
       </section>
 

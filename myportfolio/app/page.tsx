@@ -6,6 +6,7 @@ import Link from "next/link"
 import { useState, useEffect, useMemo } from "react"
 import NodeGraph from "@/components/node-graph"
 import MiniGraph from "@/components/mini-graph"
+import CurrentInterests from "@/components/current-interests"
 import { useNavigation } from "@/contexts/navigation-context"
 import { experiences, randomItems } from "@/lib/content-data"
 
@@ -171,45 +172,8 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Currently Working On section */}
-        <section className="pt-48 pb-24 px-6 relative overflow-hidden bg-black">
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400/30 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute top-32 right-20 w-24 h-24 bg-purple-400/30 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-            <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-400/30 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-          </div>
-          
-          {/* Subtle Grid Pattern Overlay */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="w-full h-full" style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.2) 1px, transparent 0)`,
-              backgroundSize: '50px 50px'
-            }}></div>
-          </div>
-          
-          {/* Content */}
-          <div className="relative z-10 max-w-4xl mx-auto text-center">
-            <h2 className="font-sans text-3xl font-bold mb-8 text-white">Currently Working On</h2>
-            <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-8 border border-white/25 hover:bg-white/20 hover:border-white/35 transition-all duration-500 hover:shadow-2xl hover:shadow-black/20">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <h3 className="font-sans text-xl font-semibold text-white">Research</h3>
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-              </div>
-              <p className="text-gray-100 leading-relaxed max-w-2xl mx-auto text-lg">
-                Will figure this out. 
-              </p>
-              <div className="mt-6 flex justify-center">
-                <div className="flex space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Current Interests section */}
+        <CurrentInterests />
 
 
 
