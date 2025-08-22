@@ -2,7 +2,6 @@
 
 import { Github, Linkedin, Music, Twitter } from "lucide-react"
 import { motion } from "framer-motion"
-import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import NodeGraph from "@/components/node-graph"
