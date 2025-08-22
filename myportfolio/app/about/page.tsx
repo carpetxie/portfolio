@@ -12,7 +12,7 @@ export default function About() {
   const [displayedParagraph, setDisplayedParagraph] = useState("")
   const fullText = "Jeffrey Xie"
   const fullParagraph =
-    "Hi, my name is Jeffrey. I was born in New York and raised in Ohio. I'm a software engineer broadly interested in machine learning, full-stack and graphs."
+    "Hi, my name is Jeffrey. I was born in New York and raised in Ohio. I&apos;m a software engineer broadly interested in machine learning, full-stack and graphs."
 
   useEffect(() => {
     let headingIndex = 0
