@@ -5,10 +5,8 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import MiniGraph from "@/components/mini-graph"
 import SharedNavigation from "@/components/shared-navigation"
-import { useNavigation } from "@/contexts/navigation-context"
 
 export default function About() {
-  const { setCurrentNode } = useNavigation()
   const [displayedText, setDisplayedText] = useState("")
   const [displayedParagraph, setDisplayedParagraph] = useState("")
   const fullText = "Jeffrey Xie"

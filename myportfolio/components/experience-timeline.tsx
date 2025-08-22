@@ -1,15 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { MapPin, Calendar, Building2, Briefcase } from "lucide-react"
+import { Calendar, Building2 } from "lucide-react"
 import { experiences } from "@/lib/content-data"
-
-interface Experience {
-  title: string
-  company: string
-  period: string
-  description: string
-}
 
 export default function ExperienceTimeline() {
   // Sort experiences by date (assuming period format is "MMM YYYY - MMM YYYY")
