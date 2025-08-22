@@ -42,8 +42,7 @@ export default function ExperienceTimeline() {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.6
       }
     }
   }
@@ -53,8 +52,7 @@ export default function ExperienceTimeline() {
     visible: {
       scaleY: 1,
       transition: {
-        duration: 1.2,
-        ease: "easeOut"
+        duration: 1.2
       }
     }
   }
