@@ -85,7 +85,7 @@ export default function Portfolio() {
         <HomeNavigation />
 
         {/* Hero Section */}
-        <section className="pt-32 pb-20 px-6 bg-background">
+        <section className="pt-32 pb-50 px-6 bg-background">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-8">
               <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-border">
@@ -145,9 +145,9 @@ export default function Portfolio() {
               <div className="space-y-12">
                 {experiences
                   .sort((a, b) => {
-                    // Custom sorting to handle specific experience order
-                    if (a.title === "Offseason Founder" && b.title === "Software Engineer Intern") return 1
-                    if (a.title === "Software Engineer Intern" && b.title === "Offseason Founder") return -1
+                    // Custom sorting to ensure Early Engineer appears first (most recent)
+                    if (a.title === "Early Engineer") return -1
+                    if (b.title === "Early Engineer") return 1
                     
                     // Default date sorting for other experiences
                     const getDate = (period: string) => {

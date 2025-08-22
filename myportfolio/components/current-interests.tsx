@@ -174,7 +174,7 @@ export default function CurrentInterests() {
   ]
 
   return (
-    <section ref={sectionRef} className="pt-48 pb-20 px-6 relative overflow-hidden bg-black min-h-screen">
+    <section ref={sectionRef} className="pt-24 pb-20 px-6 relative overflow-hidden bg-black min-h-screen">
       {/* Enhanced Animated Background Elements with Parallax */}
       <div className="absolute inset-0 opacity-20">
         <motion.div 

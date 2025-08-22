@@ -89,15 +89,11 @@ export default function PhotographyPage() {
                   <div className="aspect-[21/9] bg-muted rounded-lg overflow-hidden">
                     <Image
                       src={photos[0].path}
-                      alt={photos[0].title}
+                      alt="Featured photo"
                       width={1200}
                       height={514}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
-                  </div>
-                  <div className="mt-4 text-center">
-                    <h3 className="font-serif text-lg font-medium mb-1">{photos[0].title}</h3>
-                    <p className="text-sm text-muted-foreground">{photos[0].category} • {photos[0].filename}</p>
                   </div>
                 </div>
               )}
@@ -109,17 +105,11 @@ export default function PhotographyPage() {
                     <div className="aspect-square bg-muted rounded-lg overflow-hidden">
                       <Image
                         src={photo.path}
-                        alt={photo.title}
+                        alt=""
                         width={400}
                         height={400}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                    </div>
-                    <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <h4 className="font-serif text-sm font-medium">
-                        {photo.title}
-                      </h4>
-                      <p className="text-xs text-muted-foreground">{photo.category}</p>
                     </div>
                   </div>
                 ))}
