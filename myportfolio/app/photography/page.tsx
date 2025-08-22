@@ -1,8 +1,8 @@
 "use client"
 
 import { Github, Linkedin, Music, Twitter } from "lucide-react"
-import Link from "next/link"
 import MiniGraph from "@/components/mini-graph"
+import SharedNavigation from "@/components/shared-navigation"
 import { useNavigation } from "@/contexts/navigation-context"
 import { useEffect, useState } from "react"
 
@@ -56,26 +56,7 @@ export default function PhotographyPage() {
       <MiniGraph />
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
-                  <div className="max-w-6xl ml-0 pl-6 pr-2 py-4">
-          <nav className="flex items-center justify-between">
-            <Link href="/" className="font-serif text-xl font-bold hover:text-muted-foreground transition-colors">
-              Portfolio
-            </Link>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
-                Blog
-              </Link>
-              <Link href="/photography" className="text-foreground font-medium">
-                Photography
-              </Link>
-              <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                About
-              </Link>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <SharedNavigation />
 
       {/* Photography Header */}
       <section className="pt-32 pb-16 px-6">
@@ -201,7 +182,7 @@ export default function PhotographyPage() {
               <Twitter className="w-5 h-5" />
             </a>
           </div>
-          <p className="text-muted-foreground">© 2024 [Your Name]. All rights reserved.</p>
+          <p className="text-muted-foreground">© 2025 Jeffrey Xie</p>
         </div>
       </footer>
     </div>

@@ -1,12 +1,13 @@
 "use client"
 
 import { Github, Linkedin, Music, Twitter } from "lucide-react"
-
+import { motion } from "framer-motion"
 import Link from "next/link"
 import { useState, useEffect, useMemo } from "react"
 import NodeGraph from "@/components/node-graph"
 import MiniGraph from "@/components/mini-graph"
 import CurrentInterests from "@/components/current-interests"
+import HomeNavigation from "@/components/home-navigation"
 import { useNavigation } from "@/contexts/navigation-context"
 import { experiences, randomItems } from "@/lib/content-data"
 
@@ -107,35 +108,7 @@ export default function Portfolio() {
       {/* Main Content - faded when node graph is showing */}
       <div className={`transition-opacity duration-500 ${showNodeGraph ? "opacity-0" : "opacity-100"}`}>
         {/* Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
-          <div className="max-w-6xl ml-0 pl-6 pr-2 py-4">
-            <nav className="flex items-center justify-between">
-              <Link
-                href="/"
-                className="font-sans text-xl font-bold hover:text-primary transition-colors"
-                onClick={() => {
-                  // Reset to show node graph and scroll to top
-                  setShowNodeGraph(true)
-                  setCurrentNode("home")
-                  window.scrollTo({ top: 0, behavior: "smooth" })
-                }}
-              >
-                Portfolio
-              </Link>
-              <div className="hidden md:flex items-center space-x-8">
-                <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Blog
-                </Link>
-                <Link href="/photography" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Photography
-                </Link>
-                <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                  About
-                </Link>
-              </div>
-            </nav>
-          </div>
-        </header>
+        <HomeNavigation />
 
         {/* Hero Section */}
         <section className="pt-32 pb-20 px-6 bg-background">
@@ -180,36 +153,78 @@ export default function Portfolio() {
         {/* Experiences Section */}
         <section id="experiences" className="py-24 px-6 bg-background">
           <div className="max-w-6xl mx-auto">
-            <h2 className="font-sans text-3xl font-bold mb-12 text-center">Experiences</h2>
-            <div className="space-y-8">
-              {experiences.map((exp, i) => (
-                <div key={i} className="group bg-card rounded-xl p-8 border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-3 h-3 bg-primary rounded-full"></div>
-                        <h3 className="font-sans text-2xl font-bold text-foreground">{exp.title}</h3>
+            <h2 className="font-sans text-3xl font-bold mb-16 text-center">Experiences</h2>
+            
+            {/* Vertical Timeline */}
+            <div className="relative">
+              {/* Central Timeline Line */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/60 via-primary to-primary/60 transform -translate-x-1/2" />
+              
+              {/* Timeline Items */}
+              <div className="space-y-12">
+                {experiences
+                  .sort((a, b) => {
+                    // Custom sorting to handle specific experience order
+                    if (a.title === "Offseason Founder" && b.title === "Software Engineer Intern") return 1
+                    if (a.title === "Software Engineer Intern" && b.title === "Offseason Founder") return -1
+                    
+                    // Default date sorting for other experiences
+                    const getDate = (period: string) => {
+                      const startDate = period.split(' - ')[0]
+                      const [month, year] = startDate.split(' ')
+                      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                      return new Date(parseInt(year), months.indexOf(month))
+                    }
+                    return getDate(b.period).getTime() - getDate(a.period).getTime()
+                  })
+                  .map((exp, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: i * 0.1 }}
+                      viewport={{ once: true }}
+                      className={`relative flex items-center ${i % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+                    >
+                      {/* Timeline Dot */}
+                      <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
+                        <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg" />
                       </div>
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="w-2 h-2 bg-muted-foreground rounded-full"></div>
-                        <p className="text-primary font-semibold text-lg">{exp.company}</p>
+                      
+                      {/* Experience Card */}
+                      <div className={`w-5/12 ${i % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
+                        <motion.div
+                          className="group bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-primary/30 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                          whileHover={{ scale: 1.02 }}
+                        >
+                          {/* Period Badge */}
+                          <div className="flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full border border-primary/20 w-fit mb-3">
+                            <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                            <span className="text-primary font-medium text-xs">{exp.period}</span>
+                          </div>
+                          
+                          {/* Title */}
+                          <h3 className="font-sans text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                            {exp.title}
+                          </h3>
+                          
+                          {/* Company */}
+                          <p className="text-primary font-semibold text-base mb-3">
+                            {exp.company}
+                          </p>
+                          
+                          {/* Description */}
+                          <p className="text-muted-foreground leading-relaxed text-sm">
+                            {exp.description}
+                          </p>
+                          
+                          {/* Hover Effect Overlay */}
+                          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                        </motion.div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
-                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                      <span className="text-primary font-medium text-sm">{exp.period}</span>
-                    </div>
-                  </div>
-                  <div className="relative">
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/20 to-primary/60 rounded-full"></div>
-                    <p className="text-muted-foreground leading-relaxed pl-6 text-base">{exp.description}</p>
-                  </div>
-                  <div className="mt-6 flex items-center gap-2">
-                    <div className="flex-1 h-px bg-gradient-to-r from-primary/20 via-primary/40 to-transparent"></div>
-                    <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  </div>
-                </div>
-              ))}
+                    </motion.div>
+                  ))}
+              </div>
             </div>
           </div>
         </section>
@@ -272,7 +287,7 @@ export default function Portfolio() {
                 <Twitter className="w-5 h-5" />
               </a>
             </div>
-            <p className="text-muted-foreground">© 2025 Jeffrey Xie. All rights reserved.</p>
+            <p className="text-muted-foreground">© 2025 Jeffrey Xie.</p>
           </div>
         </footer>
       </div>

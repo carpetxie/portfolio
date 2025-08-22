@@ -19,6 +19,42 @@ export interface RandomItem {
 
 export const experiences: Experience[] = [
   {
+    title: "Offseason Founder",
+    company: "Founders, Inc.",
+    period: "Jun 2025 - Jun 2025",
+    description: "1 of 70 out of 2200+ chosen. Withdrew due to housing crisis in SF"
+  },
+  {
+    title: "Deep Learning Researcher",
+    company: "Dartmouth College",
+    period: "Jan 2025 - May 2025",
+    description: "Using complex valued neural networks to model neural synchrony with Dr. Chin"
+  },
+  {
+    title: "Machine Learning Researcher",
+    company: "The Ohio State University",
+    period: "May 2024 - Sep 2024",
+    description: "Applying explainable algorithms to breast cancer segmentation under Dr. Krening"
+  },
+  {
+    title: "Weeding Intern",
+    company: "Winnie & Co.",
+    period: "May 2023 - Aug 2024",
+    description: "Cultivating my neighbors' lawns"
+  },
+  {
+    title: "Farming Intern",
+    company: "Jacquemin Farms",
+    period: "Mar 2024 - Jun 2024",
+    description: "Cultivating the Ohioan fields"
+  },
+  {
+    title: "Machine Learning Researcher",
+    company: "The Ohio State University",
+    period: "Mar 2023 - Sep 2023",
+    description: "Research internship in machine learning applications"
+  },
+  {
     title: "Software Engineer Intern",
     company: "Adaptional (YCS25)",
     period: "May 2025 - Aug 2025",
@@ -29,12 +65,6 @@ export const experiences: Experience[] = [
     company: "Accruely",
     period: "Mar 2025 - May 2025",
     description: "Built accrual automation MVP that won Dartmouth Shark Tank (1st Place) and advanced to YC S25 top 10% and a16z Final Round."
-  },
-  {
-    title: "Deep Learning Researcher",
-    company: "Dartmouth LISP Lab",
-    period: "Jan 2025 - May 2025",
-    description: "Reduced MAE by 13% and increased R² from 0.78 to 0.84 over real-valued MLP baselines on time series regression tasks."
   }
 ]
 

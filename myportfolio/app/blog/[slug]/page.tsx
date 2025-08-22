@@ -6,6 +6,7 @@ import { use } from "react"
 import ReactMarkdown from "react-markdown"
 import { useEffect, useState } from "react"
 import MiniGraph from "@/components/mini-graph"
+import SharedNavigation from "@/components/shared-navigation"
 import { useNavigation } from "@/contexts/navigation-context"
 import type { BlogPost } from "@/lib/blog-utils"
 
@@ -67,26 +68,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       <MiniGraph />
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
-        <div className="max-w-6xl ml-0 pl-6 pr-2 py-4">
-          <nav className="flex items-center justify-between">
-            <Link href="/" className="font-serif text-xl font-bold hover:text-muted-foreground transition-colors">
-              Portfolio
-            </Link>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/blog" className="text-foreground font-medium">
-                Blog
-              </Link>
-              <Link href="/photography" className="text-muted-foreground hover:text-foreground transition-colors">
-                Photography
-              </Link>
-              <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                About
-              </Link>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <SharedNavigation />
 
       {/* Blog Post Content */}
       <article className="pt-32 pb-20 px-6">
