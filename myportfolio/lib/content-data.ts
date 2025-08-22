@@ -60,12 +60,7 @@ export const experiences: Experience[] = [
     period: "May 2025 - Aug 2025",
     description: "Designed property-merging algorithm with LLM parallelization, improving inference speed 2x and edge-case accuracy 90%."
   },
-  {
-    title: "Founding Engineer",
-    company: "Accruely",
-    period: "Mar 2025 - May 2025",
-    description: "Built accrual automation MVP that won Dartmouth Shark Tank (1st Place) and advanced to YC S25 top 10% and a16z Final Round."
-  }
+
 ]
 
 export const randomItems: RandomItem[] = [
