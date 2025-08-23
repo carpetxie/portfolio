@@ -62,7 +62,7 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
   const generateNodes = (): Node[] => {
     const nodes: Node[] = [
       // Main center node
-      { id: "home", label: "Home", x: 600, y: 450, type: "main", clickable: true },
+      { id: "home", label: "Home", x: 600, y: 440, type: "main", clickable: true },
 
       // Category nodes
       { id: "blog", label: "Blog", x: 300, y: 225, type: "category", parentId: "home", clickable: true },
@@ -197,43 +197,28 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm">
-        {/* Enhanced floating particles background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {Array.from({ length: 30 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-gradient-to-r from-purple-400/30 to-blue-400/30 rounded-full"
-              style={{
-                left: `${(i * 3.7) % 100}%`,
-                top: `${(i * 5.3) % 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.1, 0.8, 0.1],
-                scale: [0.5, 1.2, 0.5],
-              }}
-              transition={{
-                duration: 4 + (i * 0.2),
-                repeat: Number.POSITIVE_INFINITY,
-                delay: i * 0.15,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-        </div>
+    <div className="fixed inset-0 z-50 bg-white">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative"
+        className="relative w-full h-full"
       >
         <svg
           ref={svgRef}
-          width="1200"
-          height="900"
+          width="100%"
+          height="100vh"
           viewBox="0 0 1200 900"
+          preserveAspectRatio="xMidYMid meet"
           className="border border-border/20 rounded-lg bg-white/30"
+          style={{
+            background: `
+              radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.03) 0%, rgba(255, 255, 255, 0.8) 70%),
+              linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px)
+            `,
+            backgroundSize: '100% 100%, 20px 20px, 20px 20px'
+          }}
         >
           <defs>
             {/* Enhanced glow filters */}
@@ -270,6 +255,36 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
               <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
             </radialGradient>
           </defs>
+
+          {/* Subtle floating background dots */}
+          {Array.from({ length: 8 }).map((_, i) => {
+            const x = 100 + (i * 140) % 1000
+            const y = 80 + (i * 120) % 700
+            const size = 1 + (i % 3)
+            const opacity = 0.03 + (i % 2) * 0.02
+            
+            return (
+              <motion.circle
+                key={`bg-dot-${i}`}
+                cx={x}
+                cy={y}
+                r={size}
+                fill="rgba(139, 92, 246, 0.1)"
+                opacity={opacity}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{
+                  opacity: [opacity * 0.5, opacity, opacity * 0.5],
+                  scale: [0.8, 1.2, 0.8],
+                }}
+                transition={{
+                  duration: 4 + i * 0.5,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                  delay: i * 0.3,
+                }}
+              />
+            )
+          })}
 
           {connections.map((connection, index) => {
             const fromNode = nodes.find((n) => n.id === connection.from)
@@ -439,7 +454,7 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
                   {/* "Click me" text indicator */}
                   <motion.text
                     x={node.x}
-                    y={node.y + getNodeSize(node) + 45}
+                    y={node.y + getNodeSize(node) + 15}
                     textAnchor="middle"
                     className="fill-purple-600 text-xs font-bold pointer-events-none"
                     initial={{ opacity: 0, y: 10 }}
@@ -473,41 +488,16 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
                   {node.label}
                 </motion.text>
               )}
-              
-              {/* Content preview tooltip on hover */}
-              {hoveredNode === node.id && node.type === "category" && (
-                <motion.foreignObject
-                  x={node.x + getNodeSize(node) + 10}
-                  y={node.y - 30}
-                  width="200"
-                  height="60"
-                  initial={{ opacity: 0, x: node.x + getNodeSize(node) + 5 }}
-                  animate={{ opacity: 1, x: node.x + getNodeSize(node) + 10 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg border border-gray-200">
-                    <div className="text-xs font-medium text-gray-800 mb-1">
-                      {node.label}
-                    </div>
-                    <div className="text-xs text-gray-600">
-                      {node.id === "blog" && `${blogPosts.length} posts`}
-                      {node.id === "photography" && `${photoItems.length || 0} photos`}
-                      {node.id === "experiences" && `${experiences.length} experiences`}
-                      {node.id === "random" && `${randomItems.length} items`}
-                    </div>
-                  </div>
-                </motion.foreignObject>
-              )}
             </g>
           ))}
         </svg>
 
-        {/* Enhanced instructions */}
+        {/* Enhanced instructions - positioned to stay on screen */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.5 }}
-          className="absolute -bottom-20 left-0 right-0 text-center font-sans"
+          className="absolute bottom-10 left-0 right-0 text-center font-sans"
         >
           <motion.div
             className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-purple-200"
