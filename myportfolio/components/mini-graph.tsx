@@ -30,7 +30,11 @@ interface MiniNode {
   parentId?: string
 }
 
-export default function MiniGraph() {
+interface MiniGraphProps {
+  onGraphClick?: () => void
+}
+
+export default function MiniGraph({ onGraphClick }: MiniGraphProps) {
   const { state } = useNavigation()
   const [showPathAnimation, setShowPathAnimation] = useState(false)
   const [animationPath, setAnimationPath] = useState<{ from: string; to: string } | null>(null)
@@ -180,7 +184,8 @@ export default function MiniGraph() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
-        className="fixed top-20 left-6 z-40 w-32 h-28 bg-transparent border-none shadow-none"
+        className="fixed top-20 left-6 z-40 w-32 h-28 bg-transparent border-none shadow-none cursor-pointer"
+        onClick={onGraphClick}
       >
         <svg width="100%" height="100%" viewBox="0 0 120 80" className="opacity-100">
           {connections.map((connection) => (

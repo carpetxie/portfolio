@@ -65,10 +65,10 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
       { id: "home", label: "Home", x: 600, y: 450, type: "main", clickable: true },
 
       // Category nodes
-      { id: "blog", label: "Blog", x: 300, y: 225, type: "category", parentId: "home" },
-      { id: "photography", label: "Photography", x: 900, y: 225, type: "category", parentId: "home" },
-      { id: "experiences", label: "Experiences", x: 300, y: 675, type: "category", parentId: "home" },
-      { id: "random", label: "Random", x: 900, y: 675, type: "category", parentId: "home" },
+      { id: "blog", label: "Blog", x: 300, y: 225, type: "category", parentId: "home", clickable: true },
+      { id: "photography", label: "Photography", x: 900, y: 225, type: "category", parentId: "home", clickable: true },
+      { id: "experiences", label: "Experiences", x: 300, y: 675, type: "category", parentId: "home", clickable: true },
+      { id: "random", label: "Random", x: 900, y: 675, type: "category", parentId: "home", clickable: true },
     ]
 
     blogPosts.forEach((post, index) => {
@@ -174,6 +174,25 @@ export default function NodeGraph({ onMainNodeClick }: { onMainNodeClick: () => 
   const handleNodeClick = (node: Node) => {
     if (node.id === "home" && node.clickable) {
       onMainNodeClick()
+    } else if (node.type === "category") {
+      // Handle secondary node clicks
+      if (node.id === "blog") {
+        window.location.href = "/blog"
+      } else if (node.id === "photography") {
+        window.location.href = "/photography"
+      } else if (node.id === "experiences") {
+        // Scroll to experiences section on the same page
+        const element = document.getElementById("experiences")
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" })
+        }
+      } else if (node.id === "random") {
+        // Scroll to random section on the same page
+        const element = document.getElementById("random")
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" })
+        }
+      }
     }
   }
 

@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: "Personal Portfolio",
   description: "Minimalistic personal portfolio showcasing work and experiences",
   generator: "v0.app",
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({

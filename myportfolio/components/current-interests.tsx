@@ -1,6 +1,5 @@
 "use client"
 
-import { MapPin, BookOpen, Compass, Target, GraduationCap, Code, Database, Brain } from "lucide-react"
 import { useEffect, useState, useRef } from "react"
 import { motion, useInView, useScroll, useTransform } from "framer-motion"
 
@@ -49,7 +48,11 @@ export default function CurrentInterests() {
     {
       id: "location",
       title: "Current Location",
-      icon: <MapPin className="w-6 h-6" />,
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+      ),
       color: "from-primary/20 to-primary/10",
       content: "Columbus, Ohio",
       layout: 'wide'
@@ -57,7 +60,12 @@ export default function CurrentInterests() {
     {
       id: "reading",
       title: "Currently Reading",
-      icon: <BookOpen className="w-6 h-6" />,
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M21 4H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM3 19V6h8v13H3zm18 0h-8V6h8v13z"/>
+          <path d="M14 9.5h6v1h-6zM14 11.5h6v1h-6zM14 13.5h6v1h-6z"/>
+        </svg>
+      ),
       color: "from-primary/30 to-primary/15",
       content: "Sakana AI Papers",
       layout: 'tall'
@@ -65,7 +73,11 @@ export default function CurrentInterests() {
     {
       id: "exploring",
       title: "Exploring",
-      icon: <Compass className="w-6 h-6" />,
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+      ),
       color: "from-primary/25 to-primary/12",
       content: "Graph algorithms and full stack",
       layout: 'wide'
@@ -73,7 +85,11 @@ export default function CurrentInterests() {
     {
       id: "focus",
       title: "Current Focus",
-      icon: <Target className="w-6 h-6" />,
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      ),
       color: "from-primary/35 to-primary/18",
       content: "Automating my mom's job",
       layout: 'compact'
@@ -84,7 +100,11 @@ export default function CurrentInterests() {
     {
       id: "cs1",
       title: "Human-Centered Machine Learning",
-      icon: <Brain className="w-5 h-5" />,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+        </svg>
+      ),
       description: "Graduate-level course on ML with human factors",
       color: "text-white",
       category: "Computer Science",
@@ -93,7 +113,11 @@ export default function CurrentInterests() {
     {
       id: "cs2",
       title: "Object-Oriented Programming",
-      icon: <Code className="w-5 h-5" />,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+        </svg>
+      ),
       description: "Software design principles and OOP concepts",
       color: "text-white",
       category: "Computer Science",
@@ -102,7 +126,11 @@ export default function CurrentInterests() {
     {
       id: "cs3",
       title: "Algorithms",
-      icon: <Code className="w-5 h-5" />,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+        </svg>
+      ),
       description: "Data structures and algorithm design",
       color: "text-white",
       category: "Computer Science",
@@ -111,7 +139,11 @@ export default function CurrentInterests() {
     {
       id: "cs4",
       title: "Systems",
-      icon: <Database className="w-5 h-5" />,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+        </svg>
+      ),
       description: "Computer systems and architecture",
       color: "text-white",
       category: "Computer Science",
@@ -120,7 +152,11 @@ export default function CurrentInterests() {
     {
       id: "math1",
       title: "Linear Algebra",
-      icon: <Brain className="w-5 h-5" />,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+        </svg>
+      ),
       description: "Vector spaces, matrices, and transformations",
       color: "text-white",
       category: "Mathematics",
@@ -129,7 +165,11 @@ export default function CurrentInterests() {
     {
       id: "math2",
       title: "Multi-Variable Calculus",
-      icon: <GraduationCap className="w-5 h-5" />,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09v6L12 21l-7-3.82v-6L1 9l11-6z"/>
+        </svg>
+      ),
       description: "Calculus of multiple variables and vector analysis",
       color: "text-white",
       category: "Mathematics",
@@ -138,7 +178,11 @@ export default function CurrentInterests() {
     {
       id: "math3",
       title: "Discrete Math",
-      icon: <Code className="w-5 h-5" />,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+        </svg>
+      ),
       description: "Logic, sets, combinatorics, and graph theory",
       color: "text-white",
       category: "Mathematics",
@@ -147,7 +191,11 @@ export default function CurrentInterests() {
     {
       id: "math4",
       title: "Probability",
-      icon: <Brain className="w-5 h-5" />,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+        </svg>
+      ),
       description: "Probability theory and statistical concepts",
       color: "text-white",
       category: "Mathematics",
@@ -156,7 +204,11 @@ export default function CurrentInterests() {
     {
       id: "math5",
       title: "Machine Learning Math",
-      icon: <Brain className="w-5 h-5" />,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+        </svg>
+      ),
       description: "Mathematical foundations for ML algorithms",
       color: "text-white",
       category: "Mathematics",
@@ -165,7 +217,11 @@ export default function CurrentInterests() {
     {
       id: "math6",
       title: "Differential Equations",
-      icon: <GraduationCap className="w-5 h-5" />,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09v6L12 21l-7-3.82v-6L1 9l11-6z"/>
+        </svg>
+      ),
       description: "Ordinary and partial differential equations",
       color: "text-white",
       category: "Mathematics",
@@ -427,7 +483,13 @@ export default function CurrentInterests() {
                           {item.description}
                         </p>
                         <div className="flex items-center gap-1.5 text-xs">
-                          <span className="bg-primary/20 text-primary px-1.5 py-0.5 rounded-full font-medium">{item.category}</span>
+                          <span className={`px-1.5 py-0.5 rounded-full font-medium ${
+                            item.category === "Computer Science" 
+                              ? "bg-blue-500/20 text-blue-300 border border-blue-400/30" 
+                              : item.category === "Mathematics"
+                              ? "bg-green-500/20 text-green-300 border border-green-400/30"
+                              : "bg-primary/20 text-primary"
+                          }`}>{item.category}</span>
                           <span className="text-gray-300 group-hover:text-gray-200 transition-colors duration-300">{item.semester}</span>
                         </div>
                       </div>
