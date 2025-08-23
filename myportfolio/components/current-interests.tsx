@@ -6,7 +6,6 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion"
 interface InterestItem {
   id: string
   title: string
-  icon: React.ReactNode
   content: string
   color: string
   layout: 'wide' | 'tall' | 'compact'
@@ -24,6 +23,7 @@ interface ClassItem {
 
 export default function CurrentInterests() {
   const [isVisible, setIsVisible] = useState(false)
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
   const { scrollYProgress } = useScroll({
@@ -48,50 +48,29 @@ export default function CurrentInterests() {
     {
       id: "location",
       title: "Current Location",
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-        </svg>
-      ),
-      color: "from-primary/20 to-primary/10",
       content: "Columbus, Ohio",
+      color: "from-primary/20 to-primary/10",
       layout: 'wide'
     },
     {
       id: "reading",
       title: "Currently Reading",
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M21 4H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM3 19V6h8v13H3zm18 0h-8V6h8v13z"/>
-          <path d="M14 9.5h6v1h-6zM14 11.5h6v1h-6zM14 13.5h6v1h-6z"/>
-        </svg>
-      ),
-      color: "from-primary/30 to-primary/15",
       content: "Sakana AI Papers",
+      color: "from-primary/30 to-primary/15",
       layout: 'tall'
     },
     {
       id: "exploring",
       title: "Exploring",
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-        </svg>
-      ),
-      color: "from-primary/25 to-primary/12",
       content: "Graph algorithms and full stack",
+      color: "from-primary/25 to-primary/12",
       layout: 'wide'
     },
     {
       id: "focus",
       title: "Current Focus",
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-        </svg>
-      ),
-      color: "from-primary/35 to-primary/18",
       content: "Automating my mom's job",
+      color: "from-primary/35 to-primary/18",
       layout: 'compact'
     }
   ]
@@ -360,91 +339,130 @@ export default function CurrentInterests() {
         {/* Two-Column Layout - Reduced gap for better space utilization */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           
-          {/* Left Column - Current Interests (Unique & Organic) */}
+          {/* Left Column - Minimalist Connected Dots */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="space-y-6"
+            className="relative"
           >
             <h3 className="text-2xl font-bold text-white mb-6 text-center lg:text-left">
               Current Interests
             </h3>
             
-            <div className="grid grid-cols-1 gap-5">
-              {interestItems.map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1, ease: "easeOut" }}
-                  className={`group ${
-                    item.layout === 'wide' ? 'col-span-1' : 
-                    item.layout === 'tall' ? 'row-span-2' : 'col-span-1'
-                  }`}
-                >
-                  <div className={`
-                    relative p-8 rounded-2xl border border-white/10 overflow-hidden bg-white/5 backdrop-blur-sm
-                    hover:border-white/20 transition-all duration-500 group-hover:scale-[1.02]
-                    shadow-lg hover:shadow-2xl hover:shadow-primary/20
-                    ${item.layout === 'wide' ? 'h-28' : item.layout === 'tall' ? 'h-36' : 'h-24'}
-                  `}>
-                    {/* Enhanced gradient background overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-10 group-hover:opacity-20 transition-all duration-500`} />
+            {/* Minimalist Dots Timeline Container */}
+            <div className="relative">
+              {/* Flowing Central Line */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 via-primary/30 to-transparent transform -translate-x-1/2" />
+              
+              {/* Minimalist Dots Nodes */}
+              <div className="space-y-16">
+                {interestItems.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                    animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
+                    transition={{ duration: 0.8, delay: 0.4 + index * 0.3, ease: "easeOut" }}
+                    className="relative group"
+                    onMouseEnter={() => setHoveredItem(item.id)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    {/* Flowing Connection Line */}
+                    {index < interestItems.length - 1 && (
+                      <motion.div 
+                        className="absolute left-1/2 top-full w-0.5 h-16 bg-gradient-to-b from-primary/40 to-primary/20 transform -translate-x-1/2"
+                        initial={{ scaleY: 0 }}
+                        animate={{ scaleY: 1 }}
+                        transition={{ duration: 1, delay: 0.8 + index * 0.3 }}
+                      />
+                    )}
                     
-                    {/* Subtle pattern overlay for texture */}
-                    <div className="absolute inset-0 opacity-5">
-                      <div className="w-full h-full" style={{
-                        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-                        backgroundSize: '20px 20px'
-                      }}></div>
-                    </div>
-                    
-                    {/* Content with enhanced effects */}
-                    <div className="relative z-10 flex items-center gap-5 h-full">
-                      <div className={`
-                        p-4 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30
-                        group-hover:scale-110 group-hover:rotate-3 transition-all duration-300
-                        shadow-lg group-hover:shadow-xl group-hover:shadow-primary/30
-                        text-white
-                      `}>
-                        {item.icon}
+                    {/* Minimalist Dot Node */}
+                    <div className="relative flex items-center">
+                      {/* Left Flowing Text */}
+                      <div className={`flex-1 pr-8 text-right transition-all duration-700 ${
+                        hoveredItem === item.id ? 'opacity-100 translate-x-0' : 'opacity-90 -translate-x-1'
+                      }`}>
+                        <div className={`
+                          inline-block transition-all duration-700 group-hover:scale-105
+                          ${hoveredItem === item.id ? 'transform translate-x-2' : ''}
+                        `}>
+                          {/* Flowing Title */}
+                          <motion.h4 
+                            className="text-xl font-bold text-white mb-2 group-hover:text-gray-100 transition-colors duration-500"
+                            animate={{
+                              textShadow: hoveredItem === item.id 
+                                ? "0 0 15px rgba(var(--primary-rgb), 0.4)" 
+                                : "0 0 0px rgba(var(--primary-rgb), 0)"
+                              }}
+                          >
+                            {item.title}
+                          </motion.h4>
+                          
+                          {/* Flowing Content */}
+                          <motion.p 
+                            className="text-gray-300 text-base leading-relaxed group-hover:text-gray-200 transition-colors duration-500"
+                            animate={{
+                              textShadow: hoveredItem === item.id 
+                                ? "0 0 10px rgba(var(--primary-rgb), 0.3)" 
+                                : "0 0 0px rgba(var(--primary-rgb), 0)"
+                              }}
+                          >
+                            {item.content}
+                          </motion.p>
+                        </div>
                       </div>
                       
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-xl font-bold mb-3 text-white group-hover:text-gray-100 transition-colors duration-300 drop-shadow-lg">
-                          {item.title}
-                        </h4>
-                        <p className="text-gray-300 text-base leading-relaxed drop-shadow-md">
-                          {item.content}
-                        </p>
+                      {/* Center Minimalist Dot */}
+                      <div className="relative z-10 flex-shrink-0">
+                        <motion.div 
+                          className={`
+                            w-4 h-4 rounded-full bg-gradient-to-br ${item.color} border border-white/40
+                            transition-all duration-700 group-hover:scale-125 group-hover:border-white/60
+                            ${hoveredItem === item.id ? 'scale-125 border-white/60 shadow-lg shadow-primary/30' : ''}
+                          `}
+                          whileHover={{ scale: 1.25 }}
+                          animate={{
+                            boxShadow: hoveredItem === item.id 
+                              ? "0 0 20px rgba(var(--primary-rgb), 0.4)" 
+                              : "0 0 0px rgba(var(--primary-rgb), 0)"
+                          }}
+                        />
+                        
+                        {/* Subtle Glow Effect */}
+                        <motion.div 
+                          className={`absolute inset-0 rounded-full bg-gradient-to-br ${item.color} blur-md opacity-0 transition-opacity duration-700`}
+                          animate={{ opacity: hoveredItem === item.id ? 0.3 : 0 }}
+                        />
                       </div>
+                      
+                      {/* Right Space (Empty for balance) */}
+                      <div className="flex-1 pl-8" />
                     </div>
-                    
-                    {/* Enhanced glow effects */}
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-10 transition-all duration-500 blur-sm`} />
-                    
-                    {/* Animated border glow */}
-                    <motion.div 
-                      className={`absolute inset-0 rounded-2xl border-2 border-transparent`}
-                      style={{
-                        background: `linear-gradient(45deg, transparent, rgba(var(--primary-rgb), 0.3), transparent)`,
-                        backgroundSize: '200% 200%'
-                      }}
-                      animate={{
-                        backgroundPosition: ['0% 0%', '100% 100%']
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: "easeInOut"
-                      }}
-                    />
-                    
-                    {/* Subtle inner shadow for depth */}
-                    <div className="absolute inset-0 rounded-2xl shadow-inner opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-                </motion.div>
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* Floating Connection Particles */}
+              {Array.from({ length: 3 }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute left-1/2 w-1 h-1 bg-primary/60 rounded-full"
+                  style={{
+                    top: `${20 + (i * 25)}%`,
+                  }}
+                  animate={{
+                    y: [0, -12, 0],
+                    opacity: [0.3, 1, 0.3],
+                    scale: [0.5, 1.5, 0.5],
+                  }}
+                  transition={{
+                    duration: 3 + i,
+                    repeat: Number.POSITIVE_INFINITY,
+                    delay: i * 0.5,
+                    ease: "easeInOut",
+                  }}
+                />
               ))}
             </div>
           </motion.div>
