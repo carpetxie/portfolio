@@ -44,9 +44,6 @@ export default function BlogPage() {
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="font-serif text-4xl md:text-5xl font-bold mb-6">Blog</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Thoughts, insights, and stories from my journey in design and technology.
-          </p>
         </div>
       </section>
 
