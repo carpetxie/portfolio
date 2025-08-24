@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getBlogPostContent } from '@/lib/blog-utils'
+import { getBlogPostById } from '@/lib/blog-utils'
 
 interface RouteParams {
   params: Promise<{ slug: string }>
@@ -11,15 +11,15 @@ export async function GET(
 ) {
   try {
     const { slug } = await params
-    const content = await getBlogPostContent(slug)
+    const blogPost = getBlogPostById(slug)
     
-    if (!content) {
+    if (!blogPost) {
       return NextResponse.json({ error: 'Content not found' }, { status: 404 })
     }
     
-    return new NextResponse(content, {
+    return new NextResponse(blogPost.content, {
       headers: {
-        'Content-Type': 'text/html',
+        'Content-Type': 'text/plain',
       },
     })
   } catch (error) {

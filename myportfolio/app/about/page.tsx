@@ -2,6 +2,7 @@
 
 import { Github, Linkedin, Music, Twitter } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 import MiniGraph from "@/components/mini-graph"
 import { useNavigation } from "@/contexts/navigation-context"
@@ -83,9 +84,11 @@ export default function About() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
             <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-border">
-              <img
+              <Image
                 src="/jeffrey.jpg"
                 alt="Jeffrey Xie"
+                width={128}
+                height={128}
                 className="w-full h-full object-cover"
               />
             </div>
