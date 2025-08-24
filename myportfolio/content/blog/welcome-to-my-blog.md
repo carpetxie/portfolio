@@ -17,7 +17,7 @@ Through the transition phase of the past few months, I was constantly handed new
 
 The final push came with a phone call I received 4 days ago. It changed the entire equation. Days later, I withdrew from Brown University. I firmly believe that I will not look back nor will I regret my choice. Dartmouth has always been my home.
 
-Today marks two beginnings. One being the beginning of my portfolio after living a spontaneous life in SF, the other being a new beginning at Dartmouth.
+Today marks two beginnings. One being this portfolio and the other being a new beginning at Dartmouth.
 
 Hello Dartmouth again.
 
