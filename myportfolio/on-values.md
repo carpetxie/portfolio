@@ -34,11 +34,11 @@ It’s getting late so let’s wrap this up. We’re getting close. When conside
 I have almost 3 more years at this school. And I’d rather live 3 years in a place I can fondly call home. For this term, I’m going to take a step back from startups, research and optimization. One day(likely not far off), I will go all in again, but not now. This term, I’m going to build a home. 
 
 P.S. I wanted that to be the ending because it sounds cool, but for personal note, my commitments this term also include:
-1. Adaptional part-time LLM Research
-2. Recruiting (20% leetocde, 20% applying, 60% meeting cool ppl in tech)
-3. Gym(and basketball now too)
-4. Read/experiment interesting blogs on ai, vc and current tech trends
-5. Learn for the sake of learning–not for grades. For my classes, I’ll learn to the extent where my interests fade. 
+1). Adaptional part-time LLM Research
+2). Meeting cool ppl in tech
+3). Gym(and basketball now too)
+4). ead/experiment interesting blogs on ai, vc and current tech trends
+5).  Learn for the sake of learning–not for grades. For my classes, I’ll learn to the extent where my interests fade. 
 
 
 
