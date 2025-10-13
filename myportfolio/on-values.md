@@ -9,7 +9,7 @@ I’ve noticed a trend:
 
 The displacement of presence. 
 
-I struggle to fully immerse myself in the present. When I’m working, a part of me feels that I should be spending more time with people. The other part of me questions if I am even working on the right things. Do I work on things that bring me progressive value or do I work on things that I enjoy at the moment? Often, they are mutually exclusive. 
+I struggle to fully immerse myself in the present. When I’m working, a part of me feels that I should be spending more time with people. The other part of me questions if I am even working on the right things. Do I work on things that bring me progressive value or do I work on things that I enjoy at the moment\? Often, they are mutually exclusive. 
 
 When I’m spending time with people, a part of me wonders if I’m losing sight of my goals. I aspire to be exceptional at what I do and I believe that being exceptional requires sacrifice, otherwise it wouldn’t be “exceptional”. 
 
@@ -17,7 +17,7 @@ In periods of stress and variance, I crave stability. In periods of consistency 
 
 This dichotomy pervades each moment. I feel moments of fulfillment but never consistent fulfillment because I always remember the things that I could be doing. Maybe this is a persistent case of “the grass is greener on the other side”. 
 
-At Dartmouth, we’re taught very early that we can do anything, but we can’t do everything. I am stubborn and so deeply wish that I could do everything and some part of me still believes in it. There are certainly pockets within my day where I am simply in a transitory period between two activities. The truth is that I can always be more optimized, but at what point am I even living life? Experience is inherently inefficient, but that’s why it’s meaningful. 
+At Dartmouth, we’re taught very early that we can do anything, but we can’t do everything. I am stubborn and so deeply wish that I could do everything and some part of me still believes in it. There are certainly pockets within my day where I am simply in a transitory period between two activities. The truth is that I can always be more optimized, but at what point am I even living life\? Experience is inherently inefficient, but that’s why it’s meaningful. 
 
 As I’m writing this, I’m suddenly reminded of what Anika told me almost a year ago: “Life is not meant to be optimized; it is meant to be lived”. 
 
