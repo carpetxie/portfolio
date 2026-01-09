@@ -12,7 +12,7 @@ import { useNavigation } from "@/contexts/navigation-context"
 import { experiences, randomItems } from "@/lib/content-data"
 
 export default function Portfolio() {
-  const [showNodeGraph, setShowNodeGraph] = useState(true)
+  const [showNodeGraph, setShowNodeGraph] = useState(false)
   const { showMiniGraph, setCurrentNode } = useNavigation()
   const [displayedText, setDisplayedText] = useState("")
   const [displayedParagraph, setDisplayedParagraph] = useState("")
@@ -20,6 +20,12 @@ export default function Portfolio() {
   const fullText = "Jeffrey Xie"
   const paragraphText = "Studying cs/math at Dartmouth College"
   const introText = "Hello! I'm Jeffrey, a software engineer broadly interested in full-stack, ml and graph algorithms. Outside of academics, I lift, hike, play violin, take pictures of cool places and watch horror movies."
+  
+  useEffect(() => {
+    // Show mini graph and set current node when component mounts
+    showMiniGraph()
+    setCurrentNode("home")
+  }, [showMiniGraph, setCurrentNode])
   
   useEffect(() => {
     let headingIndex = 0
