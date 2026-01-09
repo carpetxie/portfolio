@@ -1,14 +1,13 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Crimson_Text } from "next/font/google"
+import { Playfair_Display } from "next/font/google"
 import "./globals.css"
-import { NavigationProvider } from "@/contexts/navigation-context"
 
-const crimsonText = Crimson_Text({
+const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
-  variable: "--font-crimson-text",
+  variable: "--font-playfair-display",
 })
 
 export const metadata: Metadata = {
@@ -26,9 +25,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${crimsonText.variable} antialiased`}>
-      <body className="font-sans">
-        <NavigationProvider>{children}</NavigationProvider>
+    <html lang="en" className={`${playfairDisplay.variable} antialiased`}>
+      <body className="font-serif">
+        {children}
       </body>
     </html>
   )

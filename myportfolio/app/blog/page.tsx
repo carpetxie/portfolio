@@ -2,21 +2,13 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import MiniGraph from "@/components/mini-graph"
 import SharedNavigation from "@/components/shared-navigation"
 import UniversalFooter from "@/components/universal-footer"
-import { useNavigation } from "@/contexts/navigation-context"
 import type { BlogPost } from "@/lib/blog-utils"
 
 export default function BlogPage() {
-  const { setCurrentNode, showMiniGraph } = useNavigation()
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    setCurrentNode("blog")
-    showMiniGraph()
-  }, [setCurrentNode, showMiniGraph])
 
   useEffect(() => {
     // Fetch blog posts from the API
@@ -34,61 +26,54 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Mini Graph Component */}
-      <MiniGraph />
-
       {/* Header */}
       <SharedNavigation />
 
       {/* Blog Header */}
-      <section className="pt-32 pb-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold mb-6">Blog</h1>
+      <section className="pt-24 pb-4 bg-background">
+        <div className="max-w-2xl mx-auto px-8">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-primary/30"></div>
+            <h1 className="font-sans text-2xl font-bold text-foreground">Blog</h1>
+            <div className="h-px flex-1 bg-primary/30"></div>
+          </div>
         </div>
       </section>
 
       {/* All Blog Posts */}
-      <section className="pb-20 px-6">
-        <div className="max-w-4xl mx-auto">
+      <section className="pt-0 pb-12 bg-background">
+        <div className="max-w-2xl mx-auto px-8">
           {loading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-              <p className="mt-4 text-muted-foreground">Loading blog posts...</p>
+              <p className="mt-4 text-sm text-muted-foreground">Loading blog posts...</p>
             </div>
           ) : blogPosts.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-muted-foreground">No blog posts yet. Check back soon!</p>
+              <p className="text-sm text-muted-foreground">No blog posts yet. Check back soon!</p>
             </div>
           ) : (
-            <div className="space-y-8">
+            <div className="space-y-5">
               {blogPosts.map((post) => (
                 <Link
                   key={post.id}
                   href={`/blog/${post.slug}`}
-                  className="block"
+                  className="block group"
                 >
-                  <article
-                    className="bg-card rounded-lg p-6 border border-border hover:shadow-lg transition-all duration-300 hover:border-primary/20 cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-4 mb-3">
-                      <span className="text-sm text-muted-foreground">{post.date}</span>
-                      <span className="text-sm text-muted-foreground">•</span>
-                      <span className="text-sm text-muted-foreground">{post.readTime} min read</span>
+                  <div className="relative pl-6 border-l-2 border-primary/20 hover:border-primary/40 transition-colors pb-5 last:pb-0">
+                    <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-primary/40 group-hover:bg-primary/60 transition-colors"></div>
+                    <div className="flex items-center gap-2 mb-2 text-xs text-muted-foreground">
+                      <span>{post.date}</span>
+                      <span>•</span>
+                      <span>{post.readTime} min read</span>
                     </div>
-                    <h2 className="font-serif text-2xl font-semibold mb-4 group-hover:text-primary transition-colors">
+                    <h2 className="font-sans text-lg font-semibold text-foreground mb-2 group-hover:text-primary/90 transition-colors">
                       {post.title}
                     </h2>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {post.excerpt}
                     </p>
-                    
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm text-primary font-medium group-hover:underline">
-                        Read More
-                      </span>
-                      <span className="text-sm text-muted-foreground">→</span>
-                    </div>
-                  </article>
+                  </div>
                 </Link>
               ))}
             </div>

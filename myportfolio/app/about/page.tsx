@@ -4,11 +4,8 @@ import { Github, Linkedin, Music, Twitter } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import MiniGraph from "@/components/mini-graph"
-import { useNavigation } from "@/contexts/navigation-context"
 
 export default function About() {
-  const { setCurrentNode } = useNavigation()
   const [displayedText, setDisplayedText] = useState("")
   const [displayedParagraph, setDisplayedParagraph] = useState("")
   const fullText = "Jeffrey Xie"
@@ -49,9 +46,6 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Mini Graph Component */}
-      <MiniGraph />
-
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
                   <div className="max-w-6xl ml-0 pl-6 pr-2 py-4">
@@ -59,7 +53,6 @@ export default function About() {
             <Link
               href="/"
               className="font-sans text-xl font-bold hover:text-primary transition-colors"
-              onClick={() => setCurrentNode("home")}
             >
               Portfolio
             </Link>

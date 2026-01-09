@@ -14,7 +14,7 @@ export default function SharedNavigation() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
-      <div className="max-w-6xl ml-0 pl-6 pr-2 py-4">
+      <div className="max-w-2xl mx-auto px-8 py-4">
         <nav className="hidden md:flex items-center space-x-8">
           <Link
             href="/"

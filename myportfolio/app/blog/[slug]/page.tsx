@@ -5,9 +5,7 @@ import Link from "next/link"
 import { use } from "react"
 import ReactMarkdown from "react-markdown"
 import { useEffect, useState } from "react"
-import MiniGraph from "@/components/mini-graph"
 import SharedNavigation from "@/components/shared-navigation"
-import { useNavigation } from "@/contexts/navigation-context"
 import type { BlogPost } from "@/lib/blog-utils"
 
 interface BlogPostPageProps {
@@ -15,15 +13,9 @@ interface BlogPostPageProps {
 }
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const { setCurrentNode, showMiniGraph } = useNavigation()
   const { slug } = use(params)
   const [post, setPost] = useState<BlogPost | null>(null)
   const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    setCurrentNode("blog")
-    showMiniGraph()
-  }, [setCurrentNode, showMiniGraph])
 
   useEffect(() => {
     // Fetch the specific blog post
@@ -47,7 +39,6 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   if (loading) {
     return (
       <div className="min-h-screen bg-background text-foreground">
-        <MiniGraph />
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
@@ -64,9 +55,6 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Mini Graph Component */}
-      <MiniGraph />
-
       {/* Header */}
       <SharedNavigation />
 

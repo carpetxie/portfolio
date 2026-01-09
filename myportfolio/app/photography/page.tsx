@@ -1,10 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import MiniGraph from "@/components/mini-graph"
 import SharedNavigation from "@/components/shared-navigation"
 import UniversalFooter from "@/components/universal-footer"
-import { useNavigation } from "@/contexts/navigation-context"
 import { useEffect, useState } from "react"
 
 interface PhotoItem {
@@ -17,14 +15,8 @@ interface PhotoItem {
 }
 
 export default function PhotographyPage() {
-  const { setCurrentNode, showMiniGraph } = useNavigation()
   const [photos, setPhotos] = useState<PhotoItem[]>([])
   const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    setCurrentNode("photography")
-    showMiniGraph()
-  }, [setCurrentNode, showMiniGraph])
 
   useEffect(() => {
     // Fetch photos from API
@@ -53,9 +45,6 @@ export default function PhotographyPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Mini Graph Component */}
-      <MiniGraph />
-
       {/* Header */}
       <SharedNavigation />
 
