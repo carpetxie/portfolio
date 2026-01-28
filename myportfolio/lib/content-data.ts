@@ -38,7 +38,7 @@ export const experiences: Experience[] = [
     title: "Offseason Founder",
     company: "Founders, Inc.",
     period: "Jun 2025 - Jun 2025",
-    description: "1 of 70 out of 2200+ chosen. Withdrew due to housing crisis in SF"
+    description: "1 of 70 out of 2200+ chosen. Worked on Henry, an oracle (inspired by GenBio) for high stake strategy teams."
   },
   {
     title: "Co-Investigator",
