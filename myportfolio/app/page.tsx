@@ -149,7 +149,7 @@ export default function Portfolio() {
             <p>
 
 
-              I&apos;m a Math/CS student at Dartmouth College. My work spans persona vectors and modeling world systems. I currently write research on evals / benchmarking for Adaptional (YC S25).</p>
+              I&apos;m a Math/CS student at Dartmouth College and part-time researcher Adaptional (YC S25). My work spans persona vectors and modeling world systems.</p>
             <p>
               My goal is to find a &ldquo;prime composition&rdquo; of basis vectors that compose personality. I&apos;m also working on embedding a world model into Kalshi with my dear friends <a href="https://praneelp.me/" target="_blank" rel="noopener noreferrer" className="italic underline">Praneel Patel</a> and <a href="https://www.linkedin.com/in/randylim06/" target="_blank" rel="noopener noreferrer" className="italic underline">Randy Lim</a>. 
             </p>
