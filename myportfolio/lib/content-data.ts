@@ -87,36 +87,36 @@ export const photoCategories = [
 export const projects: Project[] = [
   {
     title: "Classical Composer Prediction",
-    description: "Predict composer from MIDI using 10 musical features. 94%+ accuracy Bach vs others; 67.5% multi-class (4.7× random). Co-authors: Eddie Bae, Manraaj Singh, Warren Huang.",
+    description: "94%+ accuracy identifying Bach from MIDI using 10 musical features; 67.5% multi-class accuracy.",
     tags: ["Python", "MIDI", "Logistic Regression", "Linear Regression"],
     link: "https://github.com/carpetxie/math50-final-project",
   },
   {
     title: "IEX Crumbling Quote Signal Simulation",
-    description: "Agent-based sim of IEX CQS impact on market microstructure. Paper (w/ Praneel Patel): VPA, EOC, HFT P&L. Event-driven, Hawkes process.",
+    description: "Agent-based sim modeling IEX CQS impact on market microstructure. Event-driven with Hawkes process.",
     tags: ["Python", "Simulation", "Agent-based"],
     link: "https://github.com/carpetxie/IEX-CQI",
   },
   {
     title: "ComplexNN (Neural Synchrony)",
-    description: "Complex-valued neural networks for modeling neural synchrony in brain activity. Research codebase (private).",
+    description: "Complex-valued neural networks for modeling neural synchrony in brain activity.",
     tags: ["Python", "PyTorch", "Complex-valued NN", "Signal Processing"],
   },
   {
     title: "Breast Cancer Classification",
-    description: "Ultrasound classification (benign/malignant/normal) without ROI. Random Forest 78% acc, AUC 0.86 on 780 images. Spring 2024, w/ Krish Badri, Leah Parparov.",
+    description: "Ultrasound classification without ROI. Random Forest 78% accuracy, AUC 0.86 on 780 images.",
     tags: ["Python", "Scikit-Learn", "Random Forest", "MLP", "SVM"],
     link: "https://github.com/carpetxie/BreastCancerResearch",
   },
   {
     title: "Tiny Search Engine",
-    description: "Search engine in C: indexing, querying, and searching. COSC50 FA25 final project (Software Design & Implementation). w/ William Bowels, Cindy Jiayi Liu, Catherine Chun.",
+    description: "Full search engine in C with indexing, querying, and ranking.",
     tags: ["C", "Make", "Indexing", "Querying"],
     link: "https://github.com/carpetxie/tiny-search-engine",
   },
   {
     title: "ORM (Rock Paper Scissors)",
-    description: "Occam's Razor ML model for RPS. Cut a 62% win-rate AI down to 20.6% over 107 games; +10% win rate vs baseline.",
+    description: "Cut a 62% win-rate AI down to 20.6% over 107 games using Occam&apos;s Razor ML.",
     tags: ["Python", "Jupyter", "ML"],
     link: "https://github.com/carpetxie/ORM",
   }

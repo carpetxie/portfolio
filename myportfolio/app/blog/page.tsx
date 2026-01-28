@@ -27,14 +27,14 @@ export default function BlogPage() {
         {/* Header with Navigation */}
         <nav className="mb-12">
           <div className="flex justify-end gap-8 text-sm text-gray-600">
-            <Link href="/#about" className="hover:text-black transition-colors">About</Link>
-            <Link href="/#education" className="hover:text-black transition-colors">Education</Link>
-            <Link href="/#experience" className="hover:text-black transition-colors">Experience</Link>
-            <Link href="/#projects" className="hover:text-black transition-colors">Projects</Link>
-            <Link href="/#honors" className="hover:text-black transition-colors">Honors</Link>
-            <Link href="/#contact" className="hover:text-black transition-colors">Contact</Link>
-            <Link href="/blog" className="hover:text-black transition-colors">Blog</Link>
-            <Link href="/photography" className="hover:text-black transition-colors">Photography</Link>
+            <Link href="/#about" className="font-bold hover:text-black transition-colors">About</Link>
+            <Link href="/#education" className="font-bold hover:text-black transition-colors">Education</Link>
+            <Link href="/#experience" className="font-bold hover:text-black transition-colors">Experience</Link>
+            <Link href="/#projects" className="font-bold hover:text-black transition-colors">Projects</Link>
+            <Link href="/#honors" className="font-bold hover:text-black transition-colors">Honors</Link>
+            <Link href="/#contact" className="font-bold hover:text-black transition-colors">Contact</Link>
+            <Link href="/blog" className="font-bold hover:text-black transition-colors">Blog</Link>
+            <Link href="/photography" className="font-bold hover:text-black transition-colors">Photography</Link>
           </div>
         </nav>
 
