@@ -21,7 +21,7 @@ export default function Portfolio() {
         setTyped(TYPING_TEXT.slice(0, i))
         i++
       } else {
-        id1 && clearInterval(id1)
+        if (id1) clearInterval(id1)
         let j = 0
         id2 = setInterval(() => {
           if (j <= QUOTE_TEXT.length) {
@@ -38,8 +38,21 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] text-black">
-      <div className="max-w-[45rem] mx-auto px-14 py-12">
+    <div className="min-h-screen flex text-black">
+      {/* Left: penguin background blending into page color */}
+      <div
+        className="hidden sm:block w-[min(400px,32vw)] flex-shrink-0 min-h-screen"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, transparent 20%, rgba(245,245,245,0.6) 55%, #f5f5f5 85%), url('/penguin_0.png')",
+          backgroundSize: "100% 100%, cover",
+          backgroundPosition: "0 0, left center",
+        }}
+        aria-hidden
+      />
+      {/* Main content */}
+      <div className="flex-1 min-h-screen bg-[#f5f5f5]">
+        <div className="max-w-[45rem] mx-auto px-14 py-12">
         {/* Header with Navigation */}
         <nav className="mb-12 flex justify-end">
           <div className="flex gap-8 text-sm text-gray-600">
@@ -58,6 +71,7 @@ export default function Portfolio() {
         <div className="flex gap-6 items-center mb-6">
           {/* Profile Photo — left */}
           <div className="w-48 h-48 rounded-lg overflow-hidden border border-gray-300 flex-shrink-0 bg-gray-200">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/20260126_155556.jpg"
               alt="Jeffrey Xie"
@@ -98,9 +112,9 @@ export default function Portfolio() {
             <p>
 
 
-              I'm a Math/CS student at Dartmouth College. My work spans persona vectors and modeling world systems.</p>
+              I&apos;m a Math/CS student at Dartmouth College. My work spans persona vectors and modeling world systems.</p>
             <p>
-              My goal is to find a "prime composition" of basis vectors that compose personality. I'm also working on embedding a world model into Kalshi with my dear friends <a href="https://praneelp.me/" target="_blank" rel="noopener noreferrer" className="italic underline">Praneel Patel</a> and <a href="https://www.linkedin.com/in/randylim06/" target="_blank" rel="noopener noreferrer" className="italic underline">Randy Lim</a>.
+              My goal is to find a &ldquo;prime composition&rdquo; of basis vectors that compose personality. I&apos;m also working on embedding a world model into Kalshi with my dear friends <a href="https://praneelp.me/" target="_blank" rel="noopener noreferrer" className="italic underline">Praneel Patel</a> and <a href="https://www.linkedin.com/in/randylim06/" target="_blank" rel="noopener noreferrer" className="italic underline">Randy Lim</a>.
           
             </p>
             <p>
@@ -207,6 +221,7 @@ export default function Portfolio() {
         <footer className="border-t border-gray-300 pt-8 mt-12">
           <p className="text-gray-600 mb-2">© 2026 Jeffrey Xie. All rights reserved.</p>
         </footer>
+        </div>
       </div>
     </div>
   )
