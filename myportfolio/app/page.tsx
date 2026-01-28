@@ -192,7 +192,7 @@ export default function Portfolio() {
           <div className="space-y-2">
             {[...experiences]
               .sort((a, b) => {
-                const order = ["Adaptional (YC S25)", "Olive Theory Lab", "LISP Lab", "Cognitive Systems Engineering Lab", "Jacquemin Farms"]
+                const order = ["Adaptional (YC S25)", "Founders, Inc.", "Olive Theory Lab", "LISP Lab", "Cognitive Systems Engineering Lab", "Jacquemin Farms"]
                 return (order.indexOf(a.company) >= 0 ? order.indexOf(a.company) : 99) - (order.indexOf(b.company) >= 0 ? order.indexOf(b.company) : 99)
               })
               .map((exp, i) => (

@@ -35,6 +35,12 @@ export const experiences: Experience[] = [
     tech: "TypeScript, Next.js, PostgreSQL, pgvector, Supabase, GPT API"
   },
   {
+    title: "Offseason Founder",
+    company: "Founders, Inc.",
+    period: "Jun 2025 - Jun 2025",
+    description: "1 of 70 out of 2200+ chosen. Withdrew due to housing crisis in SF"
+  },
+  {
     title: "Co-Investigator",
     company: "Olive Theory Lab",
     period: "May 2023 - Present",
