@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Mail, Github, Linkedin } from "lucide-react"
-import { experiences, projects, honors } from "@/lib/content-data"
+import { Mail, Github, Linkedin, Globe, ExternalLink } from "lucide-react"
+import { experiences, projects, research, honors } from "@/lib/content-data"
 
 const TYPING_TEXT = "I'm Jeffrey Xie."
 const QUOTE_TEXT = "Language is a lossy compression of the mind-space."
@@ -13,6 +13,7 @@ export default function Portfolio() {
   const [quoteTyped, setQuoteTyped] = useState("")
   const [showProjects, setShowProjects] = useState(false)
   const [showHonors, setShowHonors] = useState(false)
+  const [showResearch, setShowResearch] = useState(false)
 
   useEffect(() => {
     let id1: ReturnType<typeof setInterval> | null = null
@@ -89,20 +90,23 @@ export default function Portfolio() {
         }}
         aria-hidden
       />
-      <div className="relative z-10 max-w-[45rem] mx-auto px-14 py-12">
-        {/* Header with Navigation */}
-        <nav className="mb-12 flex justify-end">
+      {/* Sticky Header */}
+      <nav className="sticky top-0 z-20 bg-[#e8e8e8] border-b border-gray-300">
+        <div className="max-w-[45rem] mx-auto px-14 py-4 flex items-center justify-between">
+          <a href="#" className="text-lg font-extrabold text-gray-700 hover:text-black transition-colors">Jeffrey Xie</a>
           <div className="flex gap-8 text-sm text-gray-600">
             <a href="#about" className="font-bold hover:text-black transition-colors">About</a>
             <a href="#education" className="font-bold hover:text-black transition-colors">Education</a>
             <a href="#experience" className="font-bold hover:text-black transition-colors">Experience</a>
             <a href="#projects" className="font-bold hover:text-black transition-colors">Projects</a>
+            <a href="#research" className="font-bold hover:text-black transition-colors">Research</a>
             <a href="#honors" className="font-bold hover:text-black transition-colors">Honors</a>
             <a href="#contact" className="font-bold hover:text-black transition-colors">Contact</a>
-            <Link href="/blog" className="font-bold hover:text-black transition-colors">Blog</Link>
-            <Link href="/photography" className="font-bold hover:text-black transition-colors">Photography</Link>
           </div>
-        </nav>
+        </div>
+      </nav>
+
+      <div className="relative z-10 max-w-[45rem] mx-auto px-14 py-12">
 
         {/* Name and Title Section with Photo */}
         <div className="flex gap-6 items-center mb-6">
@@ -198,7 +202,15 @@ export default function Portfolio() {
                 <div key={i} className="border-b border-gray-200 pb-2 last:border-b-0">
                   <div className="flex justify-between items-start mb-1">
                     <div>
-                      <h3 className="text-xl font-extrabold">{exp.company}</h3>
+                      <h3 className="text-xl font-extrabold">
+                        {exp.link ? (
+                          <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                            {exp.company}
+                          </a>
+                        ) : (
+                          exp.company
+                        )}
+                      </h3>
                       <p className="text-gray-700">{exp.title}</p>
                     </div>
                     <p className="text-gray-600 text-sm whitespace-nowrap">{exp.period}</p>
@@ -218,31 +230,101 @@ export default function Portfolio() {
             <h2 className="text-3xl font-extrabold">Projects</h2>
             <button
               onClick={() => setShowProjects(!showProjects)}
-              className="text-sm text-gray-600 hover:text-black transition-colors"
+              className="text-sm text-gray-500 hover:text-black transition-colors flex items-center gap-1"
             >
-              {showProjects ? "Hide" : "Show"}
+              {showProjects ? "Hide Details" : "Show Details"} <span className={`transition-transform ${showProjects ? "rotate-180" : ""}`}>&#8964;</span>
             </button>
           </div>
-          {showProjects && (
-            <ul className="list-disc list-inside space-y-2 text-gray-700">
-              {projects.map((project, i) => (
-                <li key={i}>
-                  {project.link ? (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-black transition-colors"
-                    >
-                      {project.title} — {project.description}
-                    </a>
-                  ) : (
-                    <>{project.title} — {project.description}</>
+          <div className="space-y-2">
+            {(() => {
+              const visible = showProjects ? projects : projects.slice(0, 3)
+              const remaining = projects.length - 3
+              return (
+                <>
+                  {visible.map((project, i) => (
+                    <div key={i} className="border-b border-gray-200 pb-2 last:border-b-0">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-xl font-extrabold">
+                          {project.github || project.website ? (
+                            <a href={project.github || project.website} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                              {project.title}
+                            </a>
+                          ) : (
+                            project.title
+                          )}
+                        </h3>
+                        <div className="flex gap-2">
+                          {project.github && (
+                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black transition-colors">
+                              <Github className="w-4 h-4" />
+                            </a>
+                          )}
+                          {project.website && (
+                            <a href={project.website} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black transition-colors">
+                              <Globe className="w-4 h-4" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                      <p className="text-gray-700">{project.description}</p>
+                      {showProjects && project.tags.length > 0 && (
+                        <p className="text-sm italic text-gray-500">{project.tags.join(", ")}</p>
+                      )}
+                    </div>
+                  ))}
+                  {!showProjects && remaining > 0 && (
+                    <p className="text-sm text-gray-500 pt-1">+ {remaining} more projects</p>
                   )}
-                </li>
-              ))}
-            </ul>
-          )}
+                </>
+              )
+            })()}
+          </div>
+        </section>
+
+        {/* Research Section */}
+        <section id="research" className="mb-12 scroll-mt-20">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-3xl font-extrabold">Research</h2>
+            <button
+              onClick={() => setShowResearch(!showResearch)}
+              className="text-sm text-gray-500 hover:text-black transition-colors flex items-center gap-1"
+            >
+              {showResearch ? "Hide Details" : "Show Details"} <span className={`transition-transform ${showResearch ? "rotate-180" : ""}`}>&#8964;</span>
+            </button>
+          </div>
+          <div className="space-y-2">
+            {research.map((item, i) => (
+              <div key={i} className="border-b border-gray-200 pb-2 last:border-b-0">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xl font-extrabold">
+                    {item.github || item.website ? (
+                      <a href={item.github || item.website} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                        {item.title}
+                      </a>
+                    ) : (
+                      item.title
+                    )}
+                  </h3>
+                  <div className="flex gap-2">
+                    {item.github && (
+                      <a href={item.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black transition-colors">
+                        <Github className="w-4 h-4" />
+                      </a>
+                    )}
+                    {item.website && (
+                      <a href={item.website} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black transition-colors">
+                        <Globe className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+                <p className="text-gray-700">{item.description}</p>
+                {showResearch && item.tags.length > 0 && (
+                  <p className="text-sm italic text-gray-500">{item.tags.join(", ")}</p>
+                )}
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Honors Section */}
@@ -263,6 +345,25 @@ export default function Portfolio() {
               ))}
             </ul>
           )}
+        </section>
+
+        {/* Elsewhere Section */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-extrabold mb-4">Elsewhere</h2>
+          <div className="space-y-3">
+            <p className="text-gray-700">
+              <Link href="/blog" className="text-blue-800 font-semibold hover:underline">
+                Blog<ExternalLink className="w-3.5 h-3.5 inline ml-0.5 -mt-0.5" />
+              </Link>
+              {" — thoughts and writing"}
+            </p>
+            <p className="text-gray-700">
+              <Link href="/photography" className="text-blue-800 font-semibold hover:underline">
+                Photography<ExternalLink className="w-3.5 h-3.5 inline ml-0.5 -mt-0.5" />
+              </Link>
+              {" — photos from travels and everyday life"}
+            </p>
+          </div>
         </section>
 
         {/* Contact Section */}

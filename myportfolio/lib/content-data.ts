@@ -11,6 +11,7 @@ export interface Experience {
   period: string
   description: string
   tech?: string
+  link?: string
 }
 
 export interface RandomItem {
@@ -23,7 +24,8 @@ export interface Project {
   description: string
   tags: string[]
   isCurrent?: boolean
-  link?: string
+  github?: string
+  website?: string
 }
 
 export const experiences: Experience[] = [
@@ -32,13 +34,15 @@ export const experiences: Experience[] = [
     company: "Adaptional (YC S25)",
     period: "May 2025 - Nov 2025",
     description: "Automated underwriting pipelines for insurance companies.",
-    tech: "TypeScript, Next.js, PostgreSQL, pgvector, Supabase, GPT API"
+    tech: "TypeScript, Next.js, PostgreSQL, pgvector, Supabase, GPT API",
+    link: "https://www.adaptional.com/"
   },
   {
     title: "Offseason Founder",
     company: "Founders, Inc.",
     period: "Jun 2025 - Jun 2025",
-    description: "1 of 70 out of 2200+ chosen. Worked on Henry, an oracle (inspired by GenBio) for high stake strategy teams."
+    description: "1 of 70 out of 2200+ chosen. Worked on Henry, an oracle (inspired by GenBio) for high stake strategy teams.",
+    link: "https://f.inc/"
   },
   {
     title: "Co-Investigator",
@@ -51,20 +55,23 @@ export const experiences: Experience[] = [
     company: "LISP Lab",
     period: "Jan 2025 - May 2025",
     description: "Using complex valued neural networks to model neural synchrony with Dr. Chin",
-    tech: "Python, PyTorch, NumPy, Pandas, Matplotlib"
+    tech: "Python, PyTorch, NumPy, Pandas, Matplotlib",
+    link: "https://sites.dartmouth.edu/lisplab/"
   },
   {
     title: "Machine Learning Research Intern",
     company: "Cognitive Systems Engineering Lab",
     period: "May 2024 - Sep 2024",
     description: "Applying explainable algorithms to breast cancer segmentation under Dr. Krening",
-    tech: "Python, TensorFlow, Scikit-learn, OpenCV, SHAP"
+    tech: "Python, TensorFlow, Scikit-learn, OpenCV, SHAP",
+    link: "https://u.osu.edu/csel/"
   },
   {
     title: "Farming Intern",
     company: "Jacquemin Farms",
     period: "Mar 2024 - Jun 2024",
-    description: "Cultivating the Ohioan fields"
+    description: "Cultivating the Ohioan fields",
+    link: "https://www.jacqueminfarms.net/"
   },
 ]
 
@@ -92,16 +99,51 @@ export const photoCategories = [
 
 export const projects: Project[] = [
   {
-    title: "Classical Composer Prediction",
-    description: "94%+ accuracy identifying Bach from MIDI using 10 musical features; 67.5% multi-class accuracy.",
-    tags: ["Python", "MIDI", "Logistic Regression", "Linear Regression"],
-    link: "https://github.com/carpetxie/math50-final-project",
+    title: "Clinova",
+    description: "Full-stack virtual clinical trial platform using a multi-agent AI pipeline to simulate, validate, and replicate randomized controlled trials with 3D visualization and OMOP CDM integration.",
+    tags: ["Full-stack", "Multi-agent AI", "3D Visualization", "AWS"],
+    github: "https://github.com/SadeekFarhan21/Clinova",
+    website: "https://clinova.farhansadeek.com/",
+  },
+  {
+    title: "SodaCan",
+    description: "Terminal-first workbench using Gemini API for 10x faster data ingestion.",
+    tags: ["Python", "Gemini API", "CLI"],
+    github: "https://github.com/carpetxie/sodacan",
+    website: "https://www.youtube.com/watch?v=D7Xe7LfG400",
   },
   {
     title: "IEX Crumbling Quote Signal Simulation",
     description: "Agent-based sim modeling IEX CQS impact on market microstructure. Event-driven with Hawkes process.",
     tags: ["Python", "Simulation", "Agent-based"],
-    link: "https://github.com/carpetxie/IEX-CQI",
+    github: "https://github.com/carpetxie/IEX-CQI",
+  },
+  {
+    title: "Tiny Search Engine",
+    description: "Full search engine in C with indexing, querying, and ranking.",
+    tags: ["C", "Make", "Indexing", "Querying"],
+    github: "https://github.com/carpetxie/tiny-search-engine",
+  },
+  {
+    title: "ORM (Rock Paper Scissors)",
+    description: "Cut a 62% win-rate AI down to 20.6% over 107 games using Occam&apos;s Razor ML.",
+    tags: ["Python", "Jupyter", "ML"],
+    github: "https://github.com/carpetxie/ORM",
+  }
+]
+
+export const research: Project[] = [
+  {
+    title: "Running Injury Prediction",
+    description: "RNN and LSTM models for predicting running injuries from ground reaction force data. RNN outperformed LSTM in accuracy, precision, and recall on 9k-point biomechanics sequences.",
+    tags: ["Python", "PyTorch", "RNN", "LSTM", "Optuna"],
+    github: "https://github.com/carpetxie/RunningInjury",
+  },
+  {
+    title: "Classical Composer Prediction",
+    description: "94%+ accuracy identifying Bach from MIDI using 10 musical features; 67.5% multi-class accuracy.",
+    tags: ["Python", "MIDI", "Logistic Regression", "Linear Regression"],
+    github: "https://github.com/carpetxie/math50-final-project",
   },
   {
     title: "ComplexNN (Neural Synchrony)",
@@ -112,20 +154,8 @@ export const projects: Project[] = [
     title: "Breast Cancer Classification",
     description: "Ultrasound classification without ROI. Random Forest 78% accuracy, AUC 0.86 on 780 images.",
     tags: ["Python", "Scikit-Learn", "Random Forest", "MLP", "SVM"],
-    link: "https://github.com/carpetxie/BreastCancerResearch",
+    github: "https://github.com/carpetxie/BreastCancerResearch",
   },
-  {
-    title: "Tiny Search Engine",
-    description: "Full search engine in C with indexing, querying, and ranking.",
-    tags: ["C", "Make", "Indexing", "Querying"],
-    link: "https://github.com/carpetxie/tiny-search-engine",
-  },
-  {
-    title: "ORM (Rock Paper Scissors)",
-    description: "Cut a 62% win-rate AI down to 20.6% over 107 games using Occam&apos;s Razor ML.",
-    tags: ["Python", "Jupyter", "ML"],
-    link: "https://github.com/carpetxie/ORM",
-  }
 ]
 
 export const hobbies: string[] = [
