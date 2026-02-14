@@ -126,7 +126,7 @@ export const projects: Project[] = [
   },
   {
     title: "Occam's Razor Model on Game Theory",
-    description: "Cut a 62% win-rate AI in rock paper scizzors down to 20.6% over 107 games using Occam's Razor ML.",
+    description: "Cut a 62% win-rate AI in rps down to 20.6% over 107 games using Occam's Razor ML.",
     tags: ["Python", "Jupyter", "ML"],
     github: "https://github.com/carpetxie/ORM",
   }
