@@ -125,8 +125,8 @@ export const projects: Project[] = [
     github: "https://github.com/carpetxie/tiny-search-engine",
   },
   {
-    title: "ORM (Rock Paper Scissors)",
-    description: "Cut a 62% win-rate AI down to 20.6% over 107 games using Occam&apos;s Razor ML.",
+    title: "Occam's Razor Model on Game Theory",
+    description: "Cut a 62% win-rate AI in rock paper scizzors down to 20.6% over 107 games using Occam's Razor ML.",
     tags: ["Python", "Jupyter", "ML"],
     github: "https://github.com/carpetxie/ORM",
   }
@@ -140,21 +140,21 @@ export const research: Project[] = [
     github: "https://github.com/carpetxie/RunningInjury",
   },
   {
-    title: "Classical Composer Prediction",
-    description: "94%+ accuracy identifying Bach from MIDI using 10 musical features; 67.5% multi-class accuracy.",
-    tags: ["Python", "MIDI", "Logistic Regression", "Linear Regression"],
-    github: "https://github.com/carpetxie/math50-final-project",
-  },
-  {
-    title: "ComplexNN (Neural Synchrony)",
-    description: "Complex-valued neural networks for modeling neural synchrony in brain activity.",
-    tags: ["Python", "PyTorch", "Complex-valued NN", "Signal Processing"],
-  },
-  {
     title: "Breast Cancer Classification",
     description: "Ultrasound classification without ROI. Random Forest 78% accuracy, AUC 0.86 on 780 images.",
     tags: ["Python", "Scikit-Learn", "Random Forest", "MLP", "SVM"],
     github: "https://github.com/carpetxie/BreastCancerResearch",
+  },
+  {
+    title: "ComplexNN (Neural Synchrony)",
+    description: "Complex-valued neural networks for modeling neural synchrony in brain activity. Private repo.",
+    tags: ["Python", "PyTorch", "Complex-valued NN", "Signal Processing"],
+  },
+  {
+    title: "Classical Composer Prediction",
+    description: "94%+ accuracy identifying Bach from MIDI using 10 musical features; 67.5% multi-class accuracy.",
+    tags: ["Python", "MIDI", "Logistic Regression", "Linear Regression"],
+    github: "https://github.com/carpetxie/math50-final-project",
   },
 ]
 

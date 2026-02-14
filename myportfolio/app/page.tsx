@@ -92,7 +92,7 @@ export default function Portfolio() {
       />
       {/* Sticky Header */}
       <nav className="sticky top-0 z-20 bg-[#e8e8e8] border-b border-gray-300">
-        <div className="max-w-[55rem] mx-auto px-14 py-4 flex items-center justify-between">
+        <div className="max-w-[50rem] mx-auto px-14 py-4 flex items-center justify-between">
           <a href="#" className="text-lg font-extrabold text-gray-700 hover:text-black transition-colors">Jeffrey Xie</a>
           <div className="flex gap-8 text-sm text-gray-600">
             <a href="#about" className="font-bold hover:text-black transition-colors">About</a>
@@ -106,7 +106,7 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      <div className="relative z-10 max-w-[55rem] mx-auto px-14 py-12">
+      <div className="relative z-10 max-w-[50rem] mx-auto px-14 py-12">
 
         {/* Name and Title Section with Photo */}
         <div className="flex gap-6 items-center mb-6">
