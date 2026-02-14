@@ -333,18 +333,41 @@ export default function Portfolio() {
             <h2 className="text-3xl font-extrabold">Honors</h2>
             <button
               onClick={() => setShowHonors(!showHonors)}
-              className="text-sm text-gray-600 hover:text-black transition-colors"
+              className="text-sm text-gray-500 hover:text-black transition-colors flex items-center gap-1"
             >
-              {showHonors ? "Hide" : "Show"}
+              {showHonors ? "Hide Details" : "Show Details"} <span className={`transition-transform ${showHonors ? "rotate-180" : ""}`}>&#8964;</span>
             </button>
           </div>
-          {showHonors && (
-            <ul className="list-disc list-inside space-y-2 text-gray-700">
-              {honors.map((honor, i) => (
-                <li key={i}>{honor}</li>
-              ))}
-            </ul>
-          )}
+          <div className="space-y-2">
+            {(() => {
+              const visible = showHonors ? honors : honors.slice(0, 3)
+              const remaining = honors.length - 3
+              return (
+                <>
+                  {visible.map((honor, i) => (
+                    <div key={i} className="border-b border-gray-200 pb-2 last:border-b-0">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-xl font-extrabold">
+                          {honor.link ? (
+                            <a href={honor.link} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                              {honor.title}
+                            </a>
+                          ) : (
+                            honor.title
+                          )}
+                        </h3>
+                        <p className="text-gray-600 text-sm whitespace-nowrap">{honor.period}</p>
+                      </div>
+                      <p className="text-gray-700">{honor.description}</p>
+                    </div>
+                  ))}
+                  {!showHonors && remaining > 0 && (
+                    <p className="text-sm text-gray-500 pt-1">+ {remaining} more honors</p>
+                  )}
+                </>
+              )
+            })()}
+          </div>
         </section>
 
         {/* Elsewhere Section */}

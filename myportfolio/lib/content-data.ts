@@ -166,15 +166,66 @@ export const hobbies: string[] = [
   "cooking",
 ]
 
-/** Add your honors as strings; they'll show as bullet points (chronological, oldest first). */
-export const honors: string[] = [
-  "Honors Performance Series Finalist — Carnegie Hall, 1st violin · Feb 2023",
-  "North Shore Hackathon — 2nd of 133, $7k · Nov 2023",
-  "Cornucodia Hackathon — 2nd of 200+, $17k · Nov 2023",
-  "Hackathon for Peace — 1st of 1150 · Oct 2023",
-  "Morrill Excellence Scholarship — Full Tuition Scholarship to OSU · Jan 2024",
-  "Invited Speaker, OSU Psych 1 — Presented to 100+ · 2024",
-  "TuckLAB Entrepreneurship Judges' Choice + 1st Place — Dartmouth · May 2025",
-  "Offseason @ Founders Inc. — 1 of 70 out of 2200+ · Jun 2025",
-  "YC Full Stack Hackathon — Top 6 Finalist out of 2000+ · Jan 2026",
+export interface Honor {
+  title: string
+  description: string
+  period: string
+  link?: string
+}
+
+export const honors: Honor[] = [
+  {
+    title: "YC Full Stack Hackathon",
+    description: "Top 6 Finalist out of 2000+ participants.",
+    period: "Jan 2026",
+    link: "#",
+  },
+  {
+    title: "Offseason @ Founders Inc.",
+    description: "1 of 70 selected out of 2200+ applicants.",
+    period: "Jun 2025",
+    link: "#",
+  },
+  {
+    title: "TuckLAB Entrepreneurship",
+    description: "Judges' Choice + 1st Place at Dartmouth.",
+    period: "May 2025",
+    link: "#",
+  },
+  {
+    title: "Invited Speaker, OSU Psych 1",
+    description: "Presented research to 100+ students.",
+    period: "2024",
+    link: "#",
+  },
+  {
+    title: "Morrill Excellence Scholarship",
+    description: "Full tuition scholarship to The Ohio State University.",
+    period: "Jan 2024",
+    link: "#",
+  },
+  {
+    title: "Hackathon for Peace",
+    description: "1st place out of 1150 participants.",
+    period: "Oct 2023",
+    link: "#",
+  },
+  {
+    title: "Cornucodia Hackathon",
+    description: "2nd place out of 200+ participants, $17k prize.",
+    period: "Nov 2023",
+    link: "#",
+  },
+  {
+    title: "North Shore Hackathon",
+    description: "2nd place out of 133 participants, $7k prize.",
+    period: "Nov 2023",
+    link: "#",
+  },
+  {
+    title: "Honors Performance Series Finalist",
+    description: "Carnegie Hall, 1st violin.",
+    period: "Feb 2023",
+    link: "#",
+  },
 ]
