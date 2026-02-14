@@ -51,6 +51,8 @@ export default function Portfolio() {
           backgroundSize: "100% 100%, contain",
           backgroundPosition: "0 0, left top",
           backgroundRepeat: "no-repeat",
+          willChange: "transform",
+          contain: "paint",
         }}
         aria-hidden
       />
@@ -63,6 +65,8 @@ export default function Portfolio() {
           backgroundSize: "100% 100%, cover",
           backgroundPosition: "0 0, right bottom",
           backgroundRepeat: "no-repeat",
+          willChange: "transform",
+          contain: "paint",
         }}
         aria-hidden
       />
@@ -75,6 +79,8 @@ export default function Portfolio() {
           backgroundSize: "100% 100%, cover",
           backgroundPosition: "0 0, right top",
           backgroundRepeat: "no-repeat",
+          willChange: "transform",
+          contain: "paint",
         }}
         aria-hidden
       />
@@ -87,6 +93,8 @@ export default function Portfolio() {
           backgroundSize: "100% 100%, cover",
           backgroundPosition: "0 0, center center",
           backgroundRepeat: "no-repeat",
+          willChange: "transform",
+          contain: "paint",
         }}
         aria-hidden
       />
