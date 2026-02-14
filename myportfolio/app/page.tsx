@@ -92,7 +92,7 @@ export default function Portfolio() {
       />
       {/* Sticky Header */}
       <nav className="sticky top-0 z-20 bg-[#e8e8e8] border-b border-gray-300">
-        <div className="max-w-[45rem] mx-auto px-14 py-4 flex items-center justify-between">
+        <div className="max-w-[55rem] mx-auto px-14 py-4 flex items-center justify-between">
           <a href="#" className="text-lg font-extrabold text-gray-700 hover:text-black transition-colors">Jeffrey Xie</a>
           <div className="flex gap-8 text-sm text-gray-600">
             <a href="#about" className="font-bold hover:text-black transition-colors">About</a>
@@ -106,7 +106,7 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      <div className="relative z-10 max-w-[45rem] mx-auto px-14 py-12">
+      <div className="relative z-10 max-w-[55rem] mx-auto px-14 py-12">
 
         {/* Name and Title Section with Photo */}
         <div className="flex gap-6 items-center mb-6">
@@ -244,15 +244,20 @@ export default function Portfolio() {
                   {visible.map((project, i) => (
                     <div key={i} className="border-b border-gray-200 pb-2 last:border-b-0">
                       <div className="flex items-center justify-between">
-                        <h3 className="text-xl font-extrabold">
-                          {project.github || project.website ? (
-                            <a href={project.github || project.website} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
-                              {project.title}
-                            </a>
-                          ) : (
-                            project.title
+                        <div className="flex items-center gap-3">
+                          <h3 className="text-xl font-extrabold">
+                            {project.github || project.website ? (
+                              <a href={project.github || project.website} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                                {project.title}
+                              </a>
+                            ) : (
+                              project.title
+                            )}
+                          </h3>
+                          {showProjects && project.tags.length > 0 && (
+                            <p className="text-sm italic text-gray-500">{project.tags.join(", ")}</p>
                           )}
-                        </h3>
+                        </div>
                         <div className="flex gap-2">
                           {project.github && (
                             <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black transition-colors">
@@ -267,9 +272,6 @@ export default function Portfolio() {
                         </div>
                       </div>
                       <p className="text-gray-700">{project.description}</p>
-                      {showProjects && project.tags.length > 0 && (
-                        <p className="text-sm italic text-gray-500">{project.tags.join(", ")}</p>
-                      )}
                     </div>
                   ))}
                   {!showProjects && remaining > 0 && (
@@ -296,15 +298,20 @@ export default function Portfolio() {
             {research.map((item, i) => (
               <div key={i} className="border-b border-gray-200 pb-2 last:border-b-0">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-extrabold">
-                    {item.github || item.website ? (
-                      <a href={item.github || item.website} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
-                        {item.title}
-                      </a>
-                    ) : (
-                      item.title
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-xl font-extrabold">
+                      {item.github || item.website ? (
+                        <a href={item.github || item.website} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                          {item.title}
+                        </a>
+                      ) : (
+                        item.title
+                      )}
+                    </h3>
+                    {showResearch && item.tags.length > 0 && (
+                      <p className="text-sm italic text-gray-500">{item.tags.join(", ")}</p>
                     )}
-                  </h3>
+                  </div>
                   <div className="flex gap-2">
                     {item.github && (
                       <a href={item.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black transition-colors">
@@ -319,9 +326,6 @@ export default function Portfolio() {
                   </div>
                 </div>
                 <p className="text-gray-700">{item.description}</p>
-                {showResearch && item.tags.length > 0 && (
-                  <p className="text-sm italic text-gray-500">{item.tags.join(", ")}</p>
-                )}
               </div>
             ))}
           </div>
@@ -338,36 +342,30 @@ export default function Portfolio() {
               {showHonors ? "Hide Details" : "Show Details"} <span className={`transition-transform ${showHonors ? "rotate-180" : ""}`}>&#8964;</span>
             </button>
           </div>
-          <div className="space-y-2">
-            {(() => {
-              const visible = showHonors ? honors : honors.slice(0, 3)
-              const remaining = honors.length - 3
-              return (
-                <>
-                  {visible.map((honor, i) => (
-                    <div key={i} className="border-b border-gray-200 pb-2 last:border-b-0">
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-xl font-extrabold">
-                          {honor.link ? (
-                            <a href={honor.link} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
-                              {honor.title}
-                            </a>
-                          ) : (
-                            honor.title
-                          )}
-                        </h3>
-                        <p className="text-gray-600 text-sm whitespace-nowrap">{honor.period}</p>
-                      </div>
-                      <p className="text-gray-700">{honor.description}</p>
-                    </div>
-                  ))}
-                  {!showHonors && remaining > 0 && (
-                    <p className="text-sm text-gray-500 pt-1">+ {remaining} more honors</p>
-                  )}
-                </>
-              )
-            })()}
-          </div>
+          {!showHonors && (
+            <p className="text-gray-700">Carnegie Hall Finalist &bull; YC Hackathon Top 6 &bull; 3x Hackathon Winner &bull; Full Tuition Scholar</p>
+          )}
+          {showHonors && (
+            <div className="space-y-2">
+              {honors.map((honor, i) => (
+                <div key={i} className="border-b border-gray-200 pb-2 last:border-b-0">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-extrabold">
+                      {honor.link ? (
+                        <a href={honor.link} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                          {honor.title}
+                        </a>
+                      ) : (
+                        honor.title
+                      )}
+                    </h3>
+                    <p className="text-gray-600 text-sm whitespace-nowrap">{honor.period}</p>
+                  </div>
+                  <p className="text-gray-700">{honor.description}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* Elsewhere Section */}
