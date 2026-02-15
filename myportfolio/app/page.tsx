@@ -16,35 +16,18 @@ export default function Portfolio() {
   const [showResearch, setShowResearch] = useState(false)
 
   useEffect(() => {
-    let id1: ReturnType<typeof setInterval> | null = null
-    let id2: ReturnType<typeof setInterval> | null = null
-    let i = 0
-    id1 = setInterval(() => {
-      if (i <= TYPING_TEXT.length) {
-        setTyped(TYPING_TEXT.slice(0, i))
-        i++
-      } else {
-        if (id1) clearInterval(id1)
-        let j = 0
-        id2 = setInterval(() => {
-          if (j <= QUOTE_TEXT.length) {
-            setQuoteTyped(QUOTE_TEXT.slice(0, j))
-            j++
-          } else if (id2) clearInterval(id2)
-        }, 25)
-      }
-    }, 80)
-    return () => {
-      if (id1) clearInterval(id1)
-      if (id2) clearInterval(id2)
-    }
+    setTyped(TYPING_TEXT)
+    const timer = setTimeout(() => {
+      setQuoteTyped(QUOTE_TEXT)
+    }, 100)
+    return () => clearTimeout(timer)
   }, [])
 
   return (
     <div className="min-h-screen bg-[#f5f5f5] text-black relative">
       {/* Top penguin overlay behind content */}
       <div
-        className="pointer-events-none hidden sm:block absolute left-0 top-0 w-[min(800px,64vw)] h-full z-0 opacity-10"
+        className="pointer-events-none hidden sm:block fixed left-0 top-0 w-[min(800px,64vw)] h-full z-0 opacity-10"
         style={{
           backgroundImage:
             "linear-gradient(to right, transparent 0%, transparent 20%, rgba(245,245,245,0.1) 40%, rgba(245,245,245,0.2) 50%, rgba(245,245,245,0.3) 60%, #f5f5f5 75%), url('/penguin_0.png')",
@@ -58,7 +41,7 @@ export default function Portfolio() {
       />
       {/* Bottom penguin overlay */}
       <div
-        className="pointer-events-none hidden sm:block absolute right-0 bottom-0 w-[min(800px,64vw)] h-[min(800px,64vh)] z-0 opacity-10"
+        className="pointer-events-none hidden sm:block fixed right-0 bottom-0 w-[min(800px,64vw)] h-[min(800px,64vh)] z-0 opacity-10"
         style={{
           backgroundImage:
             "linear-gradient(to left, transparent 0%, transparent 20%, rgba(245,245,245,0.1) 40%, rgba(245,245,245,0.2) 50%, rgba(245,245,245,0.3) 60%, #f5f5f5 75%), url('/penguin_1.png')",
@@ -72,7 +55,7 @@ export default function Portfolio() {
       />
       {/* Top right penguin overlay */}
       <div
-        className="pointer-events-none hidden sm:block absolute right-0 top-0 w-[min(800px,64vw)] h-[min(800px,64vh)] z-0 opacity-10"
+        className="pointer-events-none hidden sm:block fixed right-0 top-0 w-[min(800px,64vw)] h-[min(800px,64vh)] z-0 opacity-10"
         style={{
           backgroundImage:
             "linear-gradient(to left, transparent 0%, transparent 20%, rgba(245,245,245,0.1) 40%, rgba(245,245,245,0.2) 50%, rgba(245,245,245,0.3) 60%, #f5f5f5 75%), url('/penguin_1.png')",
@@ -86,7 +69,7 @@ export default function Portfolio() {
       />
       {/* Middle penguin overlay */}
       <div
-        className="pointer-events-none hidden sm:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(800px,64vw)] h-[min(800px,64vh)] z-0 opacity-10"
+        className="pointer-events-none hidden sm:block fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(800px,64vw)] h-[min(800px,64vh)] z-0 opacity-10"
         style={{
           backgroundImage:
             "radial-gradient(circle, transparent 0%, transparent 20%, rgba(245,245,245,0.1) 40%, rgba(245,245,245,0.2) 50%, rgba(245,245,245,0.3) 60%, #f5f5f5 75%), url('/penguin_2.png')",
