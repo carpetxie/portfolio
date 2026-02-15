@@ -11,6 +11,7 @@ const QUOTE_TEXT = "Language is a lossy compression of the mind-space."
 export default function Portfolio() {
   const [typed, setTyped] = useState("")
   const [quoteTyped, setQuoteTyped] = useState("")
+  const [showExperience, setShowExperience] = useState(false)
   const [showProjects, setShowProjects] = useState(false)
   const [showHonors, setShowHonors] = useState(false)
   const [showResearch, setShowResearch] = useState(false)
@@ -182,7 +183,15 @@ export default function Portfolio() {
 
         {/* Work Experience Section */}
         <section id="experience" className="mb-12 scroll-mt-20">
-          <h2 className="text-3xl font-extrabold mb-4">Work Experience</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-3xl font-extrabold">Work Experience</h2>
+            <button
+              onClick={() => setShowExperience(!showExperience)}
+              className="text-sm text-gray-500 hover:text-black transition-colors flex items-center gap-1"
+            >
+              {showExperience ? "Hide Details" : "Show Details"} <span className={`transition-transform ${showExperience ? "rotate-180" : ""}`}>&#8964;</span>
+            </button>
+          </div>
           <div className="space-y-2">
             {[...experiences]
               .sort((a, b) => {
@@ -207,7 +216,7 @@ export default function Portfolio() {
                     <p className="text-gray-600 text-sm whitespace-nowrap">{exp.period}</p>
                   </div>
                   <p className="text-gray-700 mb-1">{exp.description}</p>
-                  {exp.tech && (
+                  {showExperience && exp.tech && (
                     <p className="text-sm italic text-gray-500">{exp.tech}</p>
                   )}
                 </div>

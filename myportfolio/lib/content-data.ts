@@ -41,14 +41,14 @@ export const experiences: Experience[] = [
     title: "Offseason Founder",
     company: "Founders, Inc.",
     period: "Jun 2025 - Jun 2025",
-    description: "1 of 70 out of 2200+ chosen. Worked on Henry, an oracle (inspired by GenBio) for high stake strategy teams.",
+    description: "Built Henry, an oracle for strategy teams.",
     link: "https://f.inc/"
   },
   {
     title: "Co-Investigator",
     company: "Olive Theory Lab",
     period: "May 2023 - Present",
-    description: "Keeping callers on crisis hotlines on-hold for longer. Worked with the Us Natl. 988 Suicide Hotline. Music + Psychology + ML Research."
+    description: "ML research on 988 Suicide Hotline using music and psychology."
   },
   {
     title: "Deep Learning Research Intern",
