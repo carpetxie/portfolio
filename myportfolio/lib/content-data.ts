@@ -139,11 +139,17 @@ export const projects: Project[] = [
 
 export const research: Project[] = [
   {
-    title: "Running Injury Prediction",
-    preview: "RNN/LSTM on biomechanics sequences.",
-    description: "RNN and LSTM models for predicting running injuries from ground reaction force data. RNN outperformed LSTM in accuracy, precision, and recall on 9k-point biomechanics sequences.",
-    tags: ["Python", "PyTorch", "RNN", "LSTM", "Optuna"],
-    github: "https://github.com/carpetxie/RunningInjury",
+    title: "Classical Composer Prediction",
+    preview: "94%+ accuracy identifying Bach from MIDI.",
+    description: "94%+ accuracy identifying Bach from MIDI using 10 musical features; 67.5% multi-class accuracy.",
+    tags: ["Python", "MIDI", "Logistic Regression", "Linear Regression"],
+    github: "https://github.com/carpetxie/math50-final-project",
+  },
+  {
+    title: "ComplexNN (Private repo)",
+    preview: "Complex-valued NNs to mimick neural synchrony.",
+    description: "Complex-valued neural networks for modeling neural synchrony in brain activity.",
+    tags: ["Python", "PyTorch", "Complex-valued NN", "Signal Processing"],
   },
   {
     title: "Breast Cancer Classification",
@@ -153,17 +159,11 @@ export const research: Project[] = [
     github: "https://github.com/carpetxie/BreastCancerResearch",
   },
   {
-    title: "ComplexNN (Private repo)",
-    preview: "Complex-valued NNs to mimick neural synchrony.",
-    description: "Complex-valued neural networks for modeling neural synchrony in brain activity.",
-    tags: ["Python", "PyTorch", "Complex-valued NN", "Signal Processing"],
-  },
-  {
-    title: "Classical Composer Prediction",
-    preview: "94%+ accuracy identifying Bach from MIDI.",
-    description: "94%+ accuracy identifying Bach from MIDI using 10 musical features; 67.5% multi-class accuracy.",
-    tags: ["Python", "MIDI", "Logistic Regression", "Linear Regression"],
-    github: "https://github.com/carpetxie/math50-final-project",
+    title: "Running Injury Prediction",
+    preview: "RNN/LSTM on biomechanics sequences.",
+    description: "RNN and LSTM models for predicting running injuries from ground reaction force data. RNN outperformed LSTM in accuracy, precision, and recall on 9k-point biomechanics sequences.",
+    tags: ["Python", "PyTorch", "RNN", "LSTM", "Optuna"],
+    github: "https://github.com/carpetxie/RunningInjury",
   },
 ]
 
