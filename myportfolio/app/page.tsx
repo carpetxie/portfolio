@@ -215,9 +215,13 @@ export default function Portfolio() {
                     </div>
                     <p className="text-gray-600 text-sm whitespace-nowrap">{exp.period}</p>
                   </div>
-                  <p className="text-gray-700 mb-1">{exp.description}</p>
-                  {showExperience && exp.tech && (
-                    <p className="text-sm italic text-gray-500">{exp.tech}</p>
+                  {showExperience && (
+                    <>
+                      <p className="text-gray-700 mb-1">{exp.description}</p>
+                      {exp.tech && (
+                        <p className="text-sm italic text-gray-500">{exp.tech}</p>
+                      )}
+                    </>
                   )}
                 </div>
               ))}

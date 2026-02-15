@@ -34,7 +34,6 @@ export const experiences: Experience[] = [
     company: "Adaptional (YC S25)",
     period: "May 2025 - Nov 2025",
     description: "Automated underwriting pipelines for insurance companies.",
-    tech: "TypeScript, Next.js, PostgreSQL, pgvector, Supabase, GPT API",
     link: "https://www.adaptional.com/"
   },
   {
