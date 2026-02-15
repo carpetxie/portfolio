@@ -21,6 +21,7 @@ export interface RandomItem {
 
 export interface Project {
   title: string
+  preview: string
   description: string
   tags: string[]
   isCurrent?: boolean
@@ -99,6 +100,7 @@ export const photoCategories = [
 export const projects: Project[] = [
   {
     title: "Clinova",
+    preview: "Virtual clinical trial platform.",
     description: "Full-stack virtual clinical trial platform using a multi-agent AI pipeline to simulate, validate, and replicate randomized controlled trials with 3D visualization and OMOP CDM integration.",
     tags: ["Full-stack", "Multi-agent AI", "3D Visualization", "AWS"],
     github: "https://github.com/SadeekFarhan21/Clinova",
@@ -106,6 +108,7 @@ export const projects: Project[] = [
   },
   {
     title: "SodaCan",
+    preview: "Terminal-first data workbench.",
     description: "Terminal-first workbench using Gemini API for 10x faster data ingestion.",
     tags: ["Python", "Gemini API", "CLI"],
     github: "https://github.com/carpetxie/sodacan",
@@ -113,18 +116,21 @@ export const projects: Project[] = [
   },
   {
     title: "IEX Crumbling Quote Signal Simulation",
+    preview: "Market microstructure simulation.",
     description: "Agent-based sim modeling IEX CQS impact on market microstructure. Event-driven with Hawkes process.",
     tags: ["Python", "Simulation", "Agent-based"],
     github: "https://github.com/carpetxie/IEX-CQI",
   },
   {
     title: "Tiny Search Engine",
+    preview: "Full search engine in C.",
     description: "Full search engine in C with indexing, querying, and ranking.",
     tags: ["C", "Make", "Indexing", "Querying"],
     github: "https://github.com/carpetxie/tiny-search-engine",
   },
   {
     title: "Occam's Razor Model on Game Theory",
+    preview: "Beats a 62% win-rate RPS AI.",
     description: "Cut a 62% win-rate AI in rps down to 20.6% over 107 games using Occam's Razor ML.",
     tags: ["Python", "Jupyter", "ML"],
     github: "https://github.com/carpetxie/ORM",
@@ -134,23 +140,27 @@ export const projects: Project[] = [
 export const research: Project[] = [
   {
     title: "Running Injury Prediction",
+    preview: "RNN/LSTM on biomechanics sequences.",
     description: "RNN and LSTM models for predicting running injuries from ground reaction force data. RNN outperformed LSTM in accuracy, precision, and recall on 9k-point biomechanics sequences.",
     tags: ["Python", "PyTorch", "RNN", "LSTM", "Optuna"],
     github: "https://github.com/carpetxie/RunningInjury",
   },
   {
     title: "Breast Cancer Classification",
+    preview: "Ultrasound classifier, 78% accuracy.",
     description: "Ultrasound classification without ROI. Random Forest 78% accuracy, AUC 0.86 on 780 images.",
     tags: ["Python", "Scikit-Learn", "Random Forest", "MLP", "SVM"],
     github: "https://github.com/carpetxie/BreastCancerResearch",
   },
   {
-    title: "ComplexNN (Neural Synchrony)",
-    description: "Complex-valued neural networks for modeling neural synchrony in brain activity. Private repo.",
+    title: "ComplexNN (Private repo)",
+    preview: "Complex-valued NNs to mimick neural synchrony.",
+    description: "Complex-valued neural networks for modeling neural synchrony in brain activity.",
     tags: ["Python", "PyTorch", "Complex-valued NN", "Signal Processing"],
   },
   {
     title: "Classical Composer Prediction",
+    preview: "94%+ accuracy identifying Bach from MIDI.",
     description: "94%+ accuracy identifying Bach from MIDI using 10 musical features; 67.5% multi-class accuracy.",
     tags: ["Python", "MIDI", "Logistic Regression", "Linear Regression"],
     github: "https://github.com/carpetxie/math50-final-project",

@@ -240,50 +240,39 @@ export default function Portfolio() {
             </button>
           </div>
           <div className="space-y-2">
-            {(() => {
-              const visible = showProjects ? projects : projects.slice(0, 3)
-              const remaining = projects.length - 3
-              return (
-                <>
-                  {visible.map((project, i) => (
-                    <div key={i} className="border-b border-gray-200 pb-2 last:border-b-0">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <h3 className="text-xl font-extrabold">
-                            {project.github || project.website ? (
-                              <a href={project.github || project.website} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
-                                {project.title}
-                              </a>
-                            ) : (
-                              project.title
-                            )}
-                          </h3>
-                          {showProjects && project.tags.length > 0 && (
-                            <p className="text-sm italic text-gray-500">{project.tags.join(", ")}</p>
-                          )}
-                        </div>
-                        <div className="flex gap-2">
-                          {project.github && (
-                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black transition-colors">
-                              <Github className="w-4 h-4" />
-                            </a>
-                          )}
-                          {project.website && (
-                            <a href={project.website} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black transition-colors">
-                              <Globe className="w-4 h-4" />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                      <p className="text-gray-700">{project.description}</p>
-                    </div>
-                  ))}
-                  {!showProjects && remaining > 0 && (
-                    <p className="text-sm text-gray-500 pt-1">+ {remaining} more projects</p>
-                  )}
-                </>
-              )
-            })()}
+            {projects.map((project, i) => (
+              <div key={i} className="border-b border-gray-200 pb-2 last:border-b-0">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-xl font-extrabold">
+                      {project.github || project.website ? (
+                        <a href={project.github || project.website} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                          {project.title}
+                        </a>
+                      ) : (
+                        project.title
+                      )}
+                    </h3>
+                    {showProjects && project.tags.length > 0 && (
+                      <p className="text-sm italic text-gray-500">{project.tags.join(", ")}</p>
+                    )}
+                  </div>
+                  <div className="flex gap-2">
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black transition-colors">
+                        <Github className="w-4 h-4" />
+                      </a>
+                    )}
+                    {project.website && (
+                      <a href={project.website} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black transition-colors">
+                        <Globe className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+                <p className="text-gray-700">{showProjects ? project.description : project.preview}</p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -329,7 +318,7 @@ export default function Portfolio() {
                     )}
                   </div>
                 </div>
-                <p className="text-gray-700">{item.description}</p>
+                <p className="text-gray-700">{showResearch ? item.description : item.preview}</p>
               </div>
             ))}
           </div>
