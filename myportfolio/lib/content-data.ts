@@ -31,18 +31,26 @@ export interface Project {
 
 export const experiences: Experience[] = [
   {
-    title: "Early Engineer",
-    company: "Adaptional (YC S25)",
+    title: "Machine Learning Engineer Intern",
+    company: "Adaptional",
     period: "May 2025 - Nov 2025",
     description: "Automated underwriting pipelines for insurance companies.",
     link: "https://www.adaptional.com/"
   },
   {
-    title: "Offseason Founder",
+    title: "Machine Learning Engineer | Offseason Founder ",
     company: "Founders, Inc.",
-    period: "Jun 2025 - Jun 2025",
+    period: "Jun 2025 - Jul 2025",
     description: "Built Henry, an oracle for strategy teams.",
     link: "https://f.inc/"
+  },
+  {
+    title: "Machine Learning Engineer Intern",
+    company: "Grid",
+    period: "Jan 2025 - May 2025",
+    description: "Built OCR and QuickBooks ingestion pipelines with Gemini-powered accrual automation, cutting manual work by 85%.",
+    tech: "Python, OCR, QuickBooks API, Gemini, OAuth",
+    link: "https://www.withgrid.ai/"
   },
   {
     title: "Co-Investigator",

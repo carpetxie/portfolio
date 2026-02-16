@@ -5,16 +5,7 @@ import { Calendar, Building2 } from "lucide-react"
 import { experiences } from "@/lib/content-data"
 
 export default function ExperienceTimeline() {
-  // Sort experiences by date (assuming period format is "MMM YYYY - MMM YYYY")
-  const sortedExperiences = [...experiences].sort((a, b) => {
-    const getDate = (period: string) => {
-      const startDate = period.split(' - ')[0]
-      const [month, year] = startDate.split(' ')
-      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-      return new Date(parseInt(year), months.indexOf(month))
-    }
-    return getDate(b.period).getTime() - getDate(a.period).getTime()
-  })
+  const sortedExperiences = experiences
 
   // If no experiences, show a message
   if (sortedExperiences.length === 0) {
