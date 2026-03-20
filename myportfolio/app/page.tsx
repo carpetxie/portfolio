@@ -85,6 +85,7 @@ export default function Portfolio() {
       {/* Sticky Header */}
       <nav className="sticky top-0 z-20 bg-[#e8e8e8] border-b border-gray-300">
         <div className="max-w-[50rem] mx-auto px-14 py-4 flex items-center justify-center gap-8 text-sm text-gray-600">
+          <a href="#" className="font-bold hover:text-black transition-colors" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>Home</a>
           <Link href="/blog" className="font-bold hover:text-black transition-colors">Blog</Link>
           <Link href="/photography" className="font-bold hover:text-black transition-colors">Photography</Link>
         </div>
