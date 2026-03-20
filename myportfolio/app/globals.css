@@ -204,6 +204,20 @@
   animation: shimmer 2s infinite;
 }
 
+/* Scroll fade-in animation */
+section,
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.animate-in,
+.fade-in-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Custom scrollbar styling */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;

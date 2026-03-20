@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Mail, Github, Linkedin, Globe, ExternalLink } from "lucide-react"
 import { experiences, projects, research, honors } from "@/lib/content-data"
 
@@ -16,12 +16,32 @@ export default function Portfolio() {
   const [showHonors, setShowHonors] = useState(false)
   const [showResearch, setShowResearch] = useState(false)
 
+  const contentRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     setTyped(TYPING_TEXT)
     const timer = setTimeout(() => {
       setQuoteTyped(QUOTE_TEXT)
     }, 100)
     return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    const sections = contentRef.current?.querySelectorAll('section, .fade-in-section')
+    if (!sections) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+    sections.forEach((s) => observer.observe(s))
+    return () => observer.disconnect()
   }, [])
 
   return (
@@ -91,7 +111,7 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      <div className="relative z-10 max-w-[50rem] mx-auto px-14 py-12">
+      <div ref={contentRef} className="relative z-10 max-w-[50rem] mx-auto px-14 py-12">
 
         {/* Name and Title Section with Photo */}
         <div className="flex gap-6 items-center mb-6">
@@ -197,7 +217,7 @@ export default function Portfolio() {
                     <div className="flex items-baseline gap-2">
                       <h3 className="text-xl font-extrabold">
                         {exp.link ? (
-                          <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                          <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-black hover:underline">
                             {exp.company}
                           </a>
                         ) : (
@@ -209,7 +229,7 @@ export default function Portfolio() {
                     <p className="text-gray-600 text-sm whitespace-nowrap">{exp.period}</p>
                   </div>
                   {showExperience && (
-                    <p className="text-gray-700 mb-1">{exp.description}</p>
+                    <p className="text-gray-700 mb-1">- {exp.description}</p>
                   )}
                 </div>
               ))}
@@ -234,7 +254,7 @@ export default function Portfolio() {
                   <div className="flex items-center gap-3">
                     <h3 className="text-xl font-extrabold">
                       {project.github || project.website ? (
-                        <a href={project.github || project.website} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                        <a href={project.github || project.website} target="_blank" rel="noopener noreferrer" className="text-black hover:underline">
                           {project.title}
                         </a>
                       ) : (
@@ -258,7 +278,7 @@ export default function Portfolio() {
                     )}
                   </div>
                 </div>
-                <p className="text-gray-700">{showProjects ? project.description : project.preview}</p>
+                <p className="text-gray-700">- {showProjects ? project.description : project.preview}</p>
               </div>
             ))}
           </div>
@@ -282,7 +302,7 @@ export default function Portfolio() {
                   <div className="flex items-center gap-3">
                     <h3 className="text-xl font-extrabold">
                       {item.github || item.website ? (
-                        <a href={item.github || item.website} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                        <a href={item.github || item.website} target="_blank" rel="noopener noreferrer" className="text-black hover:underline">
                           {item.title}
                         </a>
                       ) : (
@@ -306,7 +326,7 @@ export default function Portfolio() {
                     )}
                   </div>
                 </div>
-                <p className="text-gray-700">{showResearch ? item.description : item.preview}</p>
+                <p className="text-gray-700">- {showResearch ? item.description : item.preview}</p>
               </div>
             ))}
           </div>
@@ -333,7 +353,7 @@ export default function Portfolio() {
                   <div className="flex items-center justify-between">
                     <h3 className="text-xl font-extrabold">
                       {honor.link ? (
-                        <a href={honor.link} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
+                        <a href={honor.link} target="_blank" rel="noopener noreferrer" className="text-black hover:underline">
                           {honor.title}
                         </a>
                       ) : (
@@ -342,30 +362,11 @@ export default function Portfolio() {
                     </h3>
                     <p className="text-gray-600 text-sm whitespace-nowrap">{honor.period}</p>
                   </div>
-                  <p className="text-gray-700">{honor.description}</p>
+                  <p className="text-gray-700">- {honor.description}</p>
                 </div>
               ))}
             </div>
           )}
-        </section>
-
-        {/* Elsewhere Section */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-extrabold mb-4">Elsewhere</h2>
-          <div className="space-y-3">
-            <p className="text-gray-700">
-              <Link href="/blog" className="text-blue-800 font-semibold hover:underline">
-                Blog<ExternalLink className="w-3.5 h-3.5 inline ml-0.5 -mt-0.5" />
-              </Link>
-              {" — thoughts and writing"}
-            </p>
-            <p className="text-gray-700">
-              <Link href="/photography" className="text-blue-800 font-semibold hover:underline">
-                Photography<ExternalLink className="w-3.5 h-3.5 inline ml-0.5 -mt-0.5" />
-              </Link>
-              {" — photos from travels and everyday life"}
-            </p>
-          </div>
         </section>
 
         {/* Contact Section */}
