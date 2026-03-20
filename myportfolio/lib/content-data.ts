@@ -32,9 +32,9 @@ export interface Project {
 export const experiences: Experience[] = [
   {
     title: "Machine Learning Engineer Intern",
-    company: "Adaptional",
+    company: "Adaptional (YC S25)",
     period: "May 2025 - Nov 2025",
-    description: "Automated underwriting pipelines for insurance companies.",
+    description: "LLMs for underwriting automation.",
     link: "https://www.adaptional.com/"
   },
   {
@@ -48,8 +48,7 @@ export const experiences: Experience[] = [
     title: "Machine Learning Engineer Intern",
     company: "Grid",
     period: "Jan 2025 - May 2025",
-    description: "Built OCR and QuickBooks ingestion pipelines with Gemini-powered accrual automation, cutting manual work by 85%.",
-    tech: "Python, OCR, QuickBooks API, Gemini, OAuth",
+    description: "Accounting automation.",
     link: "https://www.withgrid.ai/"
   },
   {
@@ -63,7 +62,6 @@ export const experiences: Experience[] = [
     company: "LISP Lab",
     period: "Jan 2025 - May 2025",
     description: "Using complex valued neural networks to model neural synchrony with Dr. Chin",
-    tech: "Python, PyTorch, NumPy, Pandas, Matplotlib",
     link: "https://sites.dartmouth.edu/lisplab/"
   },
   {
@@ -71,7 +69,6 @@ export const experiences: Experience[] = [
     company: "Cognitive Systems Engineering Lab",
     period: "May 2024 - Sep 2024",
     description: "Applying explainable algorithms to breast cancer segmentation under Dr. Krening",
-    tech: "Python, TensorFlow, Scikit-learn, OpenCV, SHAP",
     link: "https://u.osu.edu/csel/"
   },
   {

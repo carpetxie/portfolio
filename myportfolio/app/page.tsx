@@ -35,7 +35,7 @@ export default function Portfolio() {
           backgroundSize: "100% 100%, contain",
           backgroundPosition: "0 0, left top",
           backgroundRepeat: "no-repeat",
-          willChange: "transform",
+
           contain: "paint",
         }}
         aria-hidden
@@ -49,7 +49,7 @@ export default function Portfolio() {
           backgroundSize: "100% 100%, cover",
           backgroundPosition: "0 0, right bottom",
           backgroundRepeat: "no-repeat",
-          willChange: "transform",
+
           contain: "paint",
         }}
         aria-hidden
@@ -63,7 +63,7 @@ export default function Portfolio() {
           backgroundSize: "100% 100%, cover",
           backgroundPosition: "0 0, right top",
           backgroundRepeat: "no-repeat",
-          willChange: "transform",
+
           contain: "paint",
         }}
         aria-hidden
@@ -77,24 +77,16 @@ export default function Portfolio() {
           backgroundSize: "100% 100%, cover",
           backgroundPosition: "0 0, center center",
           backgroundRepeat: "no-repeat",
-          willChange: "transform",
+
           contain: "paint",
         }}
         aria-hidden
       />
       {/* Sticky Header */}
       <nav className="sticky top-0 z-20 bg-[#e8e8e8] border-b border-gray-300">
-        <div className="max-w-[50rem] mx-auto px-14 py-4 flex items-center justify-between">
-          <a href="#" className="text-lg font-extrabold text-gray-700 hover:text-black transition-colors">Jeffrey Xie</a>
-          <div className="flex gap-8 text-sm text-gray-600">
-            <a href="#about" className="font-bold hover:text-black transition-colors">About</a>
-            <a href="#education" className="font-bold hover:text-black transition-colors">Education</a>
-            <a href="#experience" className="font-bold hover:text-black transition-colors">Experience</a>
-            <a href="#projects" className="font-bold hover:text-black transition-colors">Projects</a>
-            <a href="#research" className="font-bold hover:text-black transition-colors">Research</a>
-            <a href="#honors" className="font-bold hover:text-black transition-colors">Honors</a>
-            <a href="#contact" className="font-bold hover:text-black transition-colors">Contact</a>
-          </div>
+        <div className="max-w-[50rem] mx-auto px-14 py-4 flex items-center justify-center gap-8 text-sm text-gray-600">
+          <Link href="/blog" className="font-bold hover:text-black transition-colors">Blog</Link>
+          <Link href="/photography" className="font-bold hover:text-black transition-colors">Photography</Link>
         </div>
       </nav>
 
@@ -106,7 +98,7 @@ export default function Portfolio() {
           <div className="w-48 h-48 rounded-lg overflow-hidden border border-gray-300 flex-shrink-0 bg-gray-200">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/20260126_155556.jpg"
+              src="/profile.webp"
               alt="Jeffrey Xie"
               className="w-full h-full object-cover object-[center_22%] scale-110"
             />
@@ -145,12 +137,12 @@ export default function Portfolio() {
             <p>
 
 
-              I&apos;m a Math/CS student at Dartmouth College and part-time researcher at Adaptional (YC S25). My work spans persona vectors and modeling world systems.</p>
+            I study math/cs at Dartmouth College. My research spans activation steering and information theory. I was formerly a research engineer at <a href= "https://www.adaptional.com/" className="italic underline">Adaptional (YC S25)</a> and a gardener at <a href = "https://www.jacqueminfarms.net/" className="italic underline">Jacquemin Farms</a>. Feel free to check out my <a href = "https://www.adaptional.com/blog/foundational-models-hit-94-on-insurance-docs" className= "italic underline">work.</a> </p>
             <p>
-              My goal is to find a &ldquo;prime composition&rdquo; of basis vectors that compose personality. I&apos;m also working on embedding a world model into Kalshi with my dear friends <a href="https://praneelp.me/" target="_blank" rel="noopener noreferrer" className="italic underline">Praneel Patel</a> and <a href="https://www.linkedin.com/in/randylim06/" target="_blank" rel="noopener noreferrer" className="italic underline">Randy Lim</a>. 
+            My current focus is to find a “prime composition” of basis vectors that compose personality. I'm also working on quantifying context value for AI agents with my dear friend <a href="https://praneelp.me/" target="_blank" rel="noopener noreferrer" className="italic underline">Praneel Patel</a>.
             </p>
             <p>
-              I enjoy gardening(particularly weeding), lifting, distance-running(17:29 5k), minimalistic photography and chamber music(violinist). 
+            In my free time,  I enjoy thinking and writing in my digital journal, distance running(17:29 5k many years ago), weightlifting, performing chamber violin music and minimalistic photography. 
             </p>
             <p>
               I live to increase the variance of my life. Be like the <a href="https://www.youtube.com/watch?v=mnTU_hJoByA" className="italic underline">penguin</a>.
@@ -169,13 +161,13 @@ export default function Portfolio() {
               <div>
                 <h3 className="text-xl font-extrabold">Dartmouth College</h3>
                 <p className="text-gray-700">Bachelor of Arts in Math / CS</p>
-                <p className="text-sm text-gray-600 mt-1"> Co-Founder of Dartmouth AI/ML Club | HackDartmouth Fundraising</p>
+                <p className="text-sm text-gray-600 mt-1">Dartmouth AI/ML Club Officer</p>
               </div>
               <div className="text-right">
               </div>
             </div>
             <div className="text-sm text-gray-600 mt-3">
-              <p><span className="font-semibold">Relevant Coursework:</span> OOP, Linear Algebra, Linear Modeling, Graph Theory, Software Design, Discrete Math, Algorithms, Human Centered ML*, Math of ML*, Principles of ML*, Robust DL*.</p>
+              <p><span className="font-semibold">Relevant Coursework:</span> OOP, Linear Algebra, Linear Modeling, Graph Theory, Software Design, Discrete Math, Algorithms, Computational Cognitive Science, Evolutionary Game Theory, Operating Systems, Human Centered ML*, Math of ML*, Principles of ML*, Robust DL*.</p>
               <p className="text-gray-500 mt-0.5 italic">* graduate</p>
             </div>
           </div>
@@ -195,13 +187,13 @@ export default function Portfolio() {
           <div className="space-y-2">
             {[...experiences]
               .sort((a, b) => {
-                const order = ["Adaptional", "Founders, Inc.", "Grid", "Olive Theory Lab", "LISP Lab", "Cognitive Systems Engineering Lab", "Jacquemin Farms"]
+                const order = ["Adaptional (YC S25)", "Founders, Inc.", "Grid", "Olive Theory Lab", "LISP Lab", "Cognitive Systems Engineering Lab", "Jacquemin Farms"]
                 return (order.indexOf(a.company) >= 0 ? order.indexOf(a.company) : 99) - (order.indexOf(b.company) >= 0 ? order.indexOf(b.company) : 99)
               })
               .map((exp, i) => (
                 <div key={i} className="border-b border-gray-200 pb-2 last:border-b-0">
                   <div className="flex justify-between items-start mb-1">
-                    <div>
+                    <div className="flex items-baseline gap-2">
                       <h3 className="text-xl font-extrabold">
                         {exp.link ? (
                           <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline">
@@ -216,12 +208,7 @@ export default function Portfolio() {
                     <p className="text-gray-600 text-sm whitespace-nowrap">{exp.period}</p>
                   </div>
                   {showExperience && (
-                    <>
-                      <p className="text-gray-700 mb-1">{exp.description}</p>
-                      {exp.tech && (
-                        <p className="text-sm italic text-gray-500">{exp.tech}</p>
-                      )}
-                    </>
+                    <p className="text-gray-700 mb-1">{exp.description}</p>
                   )}
                 </div>
               ))}
