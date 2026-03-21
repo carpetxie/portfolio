@@ -9,7 +9,7 @@ One week ago, I watched 18x2 Beyond Youthful Days with [REDACTED] over Discord. 
 
 As I realized last year, things tend to be more beautiful as you say goodbye. Often, the goodbye isn't that far off from the first hello. 
 
-This term has been rough at times, though unlike W25. Last winter, I wondered if I belonged here. This winter, I fell in love with Dartmouth. I often tell myself that I pursue variance, but I also crave stability. I wish that the people around me will with me. I wish that I could cling onto my emotions and the person that I am for longer. I suppose I want the variance in my life to be manufactured by me, rather than have them imposed from the outside. 
+This term has been rough at times, though unlike W25. Last winter, I wondered if I belonged here. This winter, I fell in love with Dartmouth. I often tell myself that I pursue variance, but I also crave stability. I wish that the people around me will stay with me. I wish that I could cling onto my emotions and the person that I am for longer. I suppose I want the variance in my life to be manufactured by me, rather than have them imposed from the outside. 
 
 I began to resonate with Naval Ravikant: *I, and I alone, am responsible for everything I think and feel*. The world around us will continue changing. We will continue changing. We spend too much internal anguish worrying about worries that never actualize nor are within our control. We can’t control what happens, only how we choose to experience it. Because we are responsible only for our response, the outcomes that follow fall outside our control. Is this not liberating? We are but just observers in this world of stochastic events. As observers, what can we do but witness it and enjoy the passage of time? 
 
