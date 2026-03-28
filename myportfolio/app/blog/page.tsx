@@ -1,25 +1,8 @@
-"use client"
-
 import Link from "next/link"
-import { useEffect, useState } from "react"
-import type { BlogPost } from "@/lib/blog-utils"
+import { getAllBlogPosts } from "@/lib/blog-utils"
 
 export default function BlogPage() {
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    fetch('/api/blog-posts')
-      .then(res => res.json())
-      .then(data => {
-        setBlogPosts(data)
-        setLoading(false)
-      })
-      .catch(error => {
-        console.error('Error fetching blog posts:', error)
-        setLoading(false)
-      })
-  }, [])
+  const blogPosts = getAllBlogPosts()
 
   return (
     <div className="min-h-screen bg-[#f5f5f5] text-black">
@@ -30,6 +13,7 @@ export default function BlogPage() {
             <Link href="/" className="font-bold hover:text-black transition-colors">Home</Link>
             <Link href="/blog" className="font-bold hover:text-black transition-colors">Blog</Link>
             <Link href="/photography" className="font-bold hover:text-black transition-colors">Photography</Link>
+            <Link href="/readings" className="font-bold hover:text-black transition-colors">Readings</Link>
           </div>
         </nav>
 
@@ -37,12 +21,7 @@ export default function BlogPage() {
         <h1 className="text-3xl font-bold mb-6">Blog</h1>
 
         {/* Blog Posts */}
-        {loading ? (
-          <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-400 mx-auto"></div>
-            <p className="mt-4 text-sm text-gray-600">Loading blog posts...</p>
-          </div>
-        ) : blogPosts.length === 0 ? (
+        {blogPosts.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-sm text-gray-600">No blog posts yet. Check back soon!</p>
           </div>

@@ -108,6 +108,7 @@ export default function Portfolio() {
           <a href="#" className="font-bold hover:text-black transition-colors" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>Home</a>
           <Link href="/blog" className="font-bold hover:text-black transition-colors">Blog</Link>
           <Link href="/photography" className="font-bold hover:text-black transition-colors">Photography</Link>
+          <Link href="/readings" className="font-bold hover:text-black transition-colors">Readings</Link>
         </div>
       </nav>
 
@@ -160,7 +161,7 @@ export default function Portfolio() {
 
             I study math/cs at Dartmouth College. My research spans activation steering and mechanistic interpretability. I was formerly a research engineer at <a href= "https://www.adaptional.com/" className="italic underline">Adaptional (YC S25)</a> and a gardener at <a href = "https://www.jacqueminfarms.net/" className="italic underline">Jacquemin Farms</a>. Feel free to check out my <a href = "https://www.adaptional.com/blog/foundational-models-hit-94-on-insurance-docs" className= "italic underline">work.</a> </p>
             <p>
-            My current focus is to find a “prime composition” of basis vectors that compose personality. I'm also working on some cool stuff with my dear friend <a href="https://praneelp.me/" target="_blank" rel="noopener noreferrer" className="italic underline">Praneel Patel</a>.
+            My current focus is to find a &quot;prime composition&quot; of basis vectors that compose personality. I&apos;m also working on some cool stuff with my dear friend <a href="https://praneelp.me/" target="_blank" rel="noopener noreferrer" className="italic underline">Praneel Patel</a>.
             </p>
             <p>
             In my free time,  I enjoy thinking and writing in my digital journal, distance running(17:29 5k many years ago), weightlifting, performing chamber violin music and minimalistic photography. 
