@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { Mail, Github, Linkedin, Globe } from "lucide-react"
 import { experiences, projects, research, honors } from "@/lib/content-data"
